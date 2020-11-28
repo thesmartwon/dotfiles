@@ -1,0 +1,13 @@
+/*
+!.config
+.config/*
+!.config/alacritty
+!.config/coc
+!.config/i3
+!.config/compton.conf
+!.gitignore
+!.profile
+!.zshrc
+!.xinitrc
+!.Xmodmap
+
