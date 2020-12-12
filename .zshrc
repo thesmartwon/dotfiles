@@ -1,3 +1,8 @@
+# Time zsh startup
+# exec 3>&2 2> >(tee /tmp/sample-time.$$.log |
+#                  sed -u 's/^.*$/now/' |
+#                  date -f - +%s.%N >/tmp/sample-time.$$.tim)
+# set -x
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 source ~/.profile
@@ -90,8 +95,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias fixres="xrandr --output DP-4 --mode 2560x1440"
 alias unfixres="xrandr --output DP-4 --mode 1920x1080"
+alias keymap="xmodmap ~/.Xmodmap"
 TTY=$(tty)
 if [[ -z $DISPLAY ]] && [[ $TTY == "/dev/tty1" ]]
 then
 	startx
 fi
+# set +x
+# exec 2>&3 3>&-

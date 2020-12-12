@@ -1,0 +1,128 @@
+syntax enable
+filetype plugin indent on
+set encoding=utf-8
+set clipboard=unnamed,unnamedplus
+set backspace=indent,eol,start
+set hidden
+
+" I lead with space
+map <Space> <Nop>
+let mapleader=" "
+
+" tab using 2 spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+
+" I edit this file a lot
+nnoremap <leader>e :e $MYVIMRC<cr>
+nnoremap <leader>r :source $MYVIMRC<cr>
+
+" let me resize windows
+set ttymouse=sgr " workaround vim bug if not using xterm
+set mouse=a
+
+" fuzzy find
+set wildignore+=*/tmp/*,*.swp,*.zip,*.exe,*/.git/*,*/node_modules/*,*/dist/*,*/react-styles/css/*,*/lcov-report/*
+set path+=**
+set wildmenu
+nnoremap <C-p> :find 
+
+" grep
+func GitGrep(...)
+  let save = &grepprg
+  set grepprg=git\ grep\ -n\ $*
+  let s = 'grep'
+  for i in a:000
+    let s = s . ' ' . i
+  endfor
+  exe s
+  let &grepprg = save
+endfun
+command -nargs=? G call GitGrep(<f-args>)
+nnoremap <C-f> :%s/
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" directory view
+let g:netrw_banner = 0 " takes half screen otherwise
+let g:netrw_liststyle = 3 " pretty tree
+let g:netrw_preview = 1 " vert split for preview
+let g:netrw_browse_split = 4 " open in previous split
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+noremap <silent> <leader>f :Lexplore<CR>
+set splitright
+
+function IsLoneNetRW()
+  return getbufvar(winbufnr(winnr()), "&filetype") == "netrw" && winnr('$') == 1
+endfunction
+
+aug netrw_open
+  au!
+  " If we're a netrc window and there's one buffer left add a new split
+  au BufCreate * if IsLoneNetRW()|bd|:Lexplore|endif
+aug END
+aug netrw_close
+  au!
+  " If we're a netrc window and there's one buffer left quit
+  au WinEnter * if IsLoneNetRW()|q|endif
+aug END
+
+" make errors
+nnoremap <leader>n :cnext<CR>
+nnoremap <leader>N :cprev<CR>
+nnoremap <leader>q :cope<CR>
+
+" rust make
+let g:rust_recommended_style=0 " cramps my style
+aug rust
+  au!
+  au FileType rust set makeprg=cargo\ check
+  au FileType rust set errorformat=
+              \%-G,
+              \%-Gerror:\ aborting\ %.%#,
+              \%-Gerror:\ Could\ not\ compile\ %.%#,
+              \%Eerror:\ %m,
+              \%Eerror[E%n]:\ %m,
+              \%Wwarning:\ %m,
+              \%Inote:\ %m,
+              \%C\ %#-->\ %f:%l:%c,
+              \%E\ \ left:%m,%C\ right:%m\ %f:%l:%c,%Z
+aug END
+
+" coc langauge server
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+set number
+set signcolumn=number
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+" GoTo code navigation.
+nmap <silent> <leader>d <Plug>(coc-definition)
+nmap <silent> <leader>y <Plug>(coc-type-definition)
+nmap <silent> <leader>i <Plug>(coc-implementation)
+nmap <silent> <leader>r <Plug>(coc-references)
+" Quickfix
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Return to cursor on open
+aug position
+"  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+aug END
