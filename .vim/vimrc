@@ -1,4 +1,5 @@
 syntax enable
+colorscheme spacegray
 filetype plugin indent on
 set encoding=utf-8
 set clipboard=unnamed,unnamedplus
@@ -15,6 +16,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab
+let g:latex_to_unicode_tab=0
 
 " I edit this file a lot
 nnoremap <leader>e :e $MYVIMRC<cr>
@@ -33,7 +35,7 @@ nnoremap <C-p> :find
 " grep
 func GitGrep(...)
   let save = &grepprg
-  set grepprg=git\ grep\ -n\ $*
+  set grepprg=git\ grep\ -n\ -i\ $*
   let s = 'grep'
   for i in a:000
     let s = s . ' ' . i
@@ -43,6 +45,8 @@ func GitGrep(...)
 endfun
 command -nargs=? G call GitGrep(<f-args>)
 nnoremap <C-f> :%s/
+" coc grep is better
+nnoremap <C-S-f> :CocSearch 
 
 " Easy window navigation
 map <C-h> <C-w>h
@@ -97,10 +101,19 @@ aug rust
               \%E\ \ left:%m,%C\ right:%m\ %f:%l:%c,%Z
 aug END
 
+" julia make
+aug julia
+  au!
+  au FileType julia set makeprg=julia\ --project=.\ test/runtests.jl
+  "au FileType julia set errorformat=
+aug END
+
+
 " coc langauge server
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 set number
 set signcolumn=number
+set updatetime=300
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -119,6 +132,9 @@ nmap <silent> <leader>d <Plug>(coc-definition)
 nmap <silent> <leader>y <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> <leader>r <Plug>(coc-references)
+" Use for tags
+set tagfunc=CocTagFunc
+
 " Quickfix
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -126,3 +142,17 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 aug position
 "  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 aug END
+
+" Make directories to filepath when saving
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
