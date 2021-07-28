@@ -33,17 +33,15 @@ set wildmenu
 nnoremap <C-p> :find 
 
 " grep
-func GitGrep(...)
-  let save = &grepprg
-  set grepprg=git\ grep\ -n\ -i\ $*
+set grepprg=rg\ --vimgrep\ --smart-case
+function Grep(...)
   let s = 'grep'
   for i in a:000
     let s = s . ' ' . i
   endfor
   exe s
-  let &grepprg = save
-endfun
-command -nargs=? G call GitGrep(<f-args>)
+endfunction
+command -nargs=? G call Grep(<f-args>)
 nnoremap <C-f> :%s/
 " coc grep is better
 nnoremap <C-S-f> :CocSearch 
@@ -53,6 +51,10 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+map <Esc>[1;5D <c-w>h
+map <Esc>[1;5B <c-w>j
+map <Esc>[1;5A <c-w>k
+map <Esc>[1;5C <c-w>l
 
 " directory view
 let g:netrw_banner = 0 " takes half screen otherwise
@@ -156,3 +158,9 @@ augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+" Allow holding down shift for basic commands
+command W w
+command Q q
+command Wq wq
+command WQ wq
+command E e

@@ -49,10 +49,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v split h
 
 # split in horizontal orientation
-bindsym $mod+b split h
+bindsym $mod+b split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -161,6 +161,7 @@ bar {
 
 # Wallpaper
 # exec_always feh --bg-scale ~/Pictures/skyscraper_girl.jpg
+exec_always hsetroot -solid "#000000"
 
 # Compositor
 exec --no-startup-id picom --config ~/.config/compton.conf -b

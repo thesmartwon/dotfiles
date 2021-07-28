@@ -32,18 +32,9 @@ endif
 let g:colors_name = 'spacegray'
 
 " Colorscheme definitions {{{1
-if g:spacegray_low_contrast
-  hi Normal        ctermbg=235  ctermfg=250    guibg=#242424  guifg=#B3B8C4  cterm=NONE      gui=NONE
-else
-  hi Normal        ctermbg=233  ctermfg=250    guibg=#111314  guifg=#B3B8C4  cterm=NONE      gui=NONE
-endif
-
-if g:spacegray_use_italics
-  hi Comment       ctermbg=NONE ctermfg=242    guibg=NONE     guifg=#657785  cterm=italic    gui=italic
-else
-  hi Comment       ctermbg=NONE ctermfg=242    guibg=NONE     guifg=#657785  cterm=NONE      gui=NONE
-endif
-
+" https://jonasjacek.github.io/colors/
+hi Normal          ctermbg=16    ctermfg=250    guibg=#000000  guifg=#B3B8C4  cterm=NONE      gui=NONE
+hi Comment         ctermbg=NONE ctermfg=242    guibg=NONE     guifg=#657785  cterm=NONE      gui=NONE
 hi Conceal         ctermbg=NONE ctermfg=250    guibg=NONE     guifg=#B3B8C4  cterm=NONE      gui=NONE
 hi NonText         ctermbg=NONE ctermfg=8      guibg=NONE     guifg=#3E4853  cterm=NONE      gui=NONE
 hi Title           ctermbg=NONE ctermfg=250    guibg=NONE     guifg=#B3B8C4  cterm=bold      gui=bold
@@ -79,7 +70,7 @@ hi DiffText        ctermbg=60   ctermfg=251    guibg=#5F5F87   guifg=#D0D0D0 cte
 hi helpLeadBlank   ctermbg=NONE ctermfg=NONE   guibg=NONE     guifg=NONE     cterm=NONE      gui=NONE
 hi helpNormal      ctermbg=NONE ctermfg=NONE   guibg=NONE     guifg=NONE     cterm=NONE      gui=NONE
 
-hi LineNr          ctermbg=NONE ctermfg=8      guibg=#111314  guifg=#3E4853  cterm=NONE      gui=NONE
+hi LineNr          ctermbg=NONE ctermfg=8      guibg=#000000  guifg=#3E4853  cterm=NONE      gui=NONE
 hi CursorLineNr    ctermbg=NONE ctermfg=243    guibg=NONE     guifg=#808080  cterm=NONE      gui=NONE
 
 hi Pmenu           ctermbg=233  ctermfg=137    guibg=#171717  guifg=#E8A973  cterm=none      gui=NONE
@@ -89,27 +80,10 @@ hi PmenuThumb      ctermbg=235  ctermfg=137    guibg=NONE     guifg=#171717  cte
 
 hi WildMenu        ctermbg=110  ctermfg=235    guibg=#8FAFD7  guifg=#141617  cterm=bold      gui=bold
 
-if g:spacegray_low_contrast
-  hi StatusLine         ctermbg=236 ctermfg=249 guibg=#303537 guifg=#B3B8C4 cterm=NONE   gui=NONE
-  hi StatusLineTerm     ctermbg=236 ctermfg=249 guibg=#303537 guifg=#B3B8C4 cterm=NONE   gui=NONE
-  if g:spacegray_use_italics
-    hi StatusLineNC     ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=italic gui=italic
-    hi StatusLineTermNC ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=italic gui=italic
-  else
-    hi StatusLineNC     ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=NONE   gui=NONE
-    hi StatusLineTermNC ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=NONE   gui=NONE
-  endif
-else
-    hi StatusLine       ctermbg=235 ctermfg=249 guibg=#303537 guifg=#B3B8C4 cterm=NONE   gui=NONE
-    hi StatusLineTerm   ctermbg=235 ctermfg=249 guibg=#303537 guifg=#B3B8C4 cterm=NONE   gui=NONE
-  if g:spacegray_use_italics
-    hi StatusLineNC     ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=italic gui=italic
-    hi StatusLineTermNC ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=italic gui=italic
-  else
-    hi StatusLineNC     ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=NONE   gui=NONE
-    hi StatusLineTermNC ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=NONE   gui=NONE
-  endif
-endif
+hi StatusLine       ctermbg=235 ctermfg=249 guibg=#303537 guifg=#B3B8C4 cterm=NONE   gui=NONE
+hi StatusLineTerm   ctermbg=235 ctermfg=249 guibg=#303537 guifg=#B3B8C4 cterm=NONE   gui=NONE
+hi StatusLineNC     ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=NONE   gui=NONE
+hi StatusLineTermNC ctermbg=232 ctermfg=239 guibg=#1C1F20 guifg=#7C7F88 cterm=NONE   gui=NONE
 
 hi Underlined      ctermbg=NONE ctermfg=66     guibg=NONE     guifg=#5F8787  cterm=NONE      gui=NONE
 hi Ignore          ctermbg=NONE ctermfg=250    guibg=NONE     guifg=#BCBCBC  cterm=NONE      gui=NONE
@@ -123,11 +97,8 @@ hi Folded          ctermbg=NONE ctermfg=242    guibg=#1C1C1C  guifg=#6C6C6C  cte
 hi VertSplit       ctermbg=232  ctermfg=232    guibg=#1C1F20  guifg=#1C1F20  cterm=NONE      gui=NONE
 
 hi IncSearch       ctermbg=9    ctermfg=0      guibg=#AF5F5F  guifg=#141617  cterm=NONE      gui=NONE
-if g:spacegray_underline_search
-  hi Search        ctermbg=NONE ctermfg=NONE   guibg=NONE     guifg=NONE     cterm=underline,bold gui=underline,bold
-else
-  hi Search        ctermbg=2    ctermfg=232    guibg=#919652  guifg=#141617  cterm=NONE      gui=NONE
-endif
+hi Search        ctermbg=NONE ctermfg=NONE   guibg=NONE     guifg=NONE     cterm=underline,bold gui=underline,bold
+"hi Search        ctermbg=2    ctermfg=232    guibg=#919652  guifg=#141617  cterm=NONE      gui=NONE
 
 hi TabLine         ctermbg=232  ctermfg=249    guibg=#141617  guifg=#B3B8C4  cterm=NONE      gui=NONE
 hi TabLineFill     ctermbg=235  ctermfg=239    guibg=#303537  guifg=#303537  cterm=NONE      gui=NONE
@@ -179,13 +150,6 @@ hi link htmlEndTag          htmlTagName
 hi link htmlLink            Function
 hi link htmlSpecialTagName  htmlTagName
 hi link htmlTag             htmlTagName
-
-" Rails
-hi link rubyRailsARAssociationMethod  Statement
-hi link rubyRailsARValidationMethod   Statement
-hi link rubyRailsARMethod             Statement
-hi link rubyRailsARCallbackMethod     Statement
-hi link rubyRailsARClassMethod        Statement
 
 " Diff
 hi link diffAdded           String

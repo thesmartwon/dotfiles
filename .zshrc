@@ -93,8 +93,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias fixres="xrandr --output DP-4 --mode 3440x1440"
-alias unfixres="xrandr --output DP-4 --mode 1920x1080"
+alias fixres="xrandr --output DP-4 --mode 3440x1440 --rate 144 && xrandr --output DP-2 --mode 3440x1440 --rate 144"
+alias unfixres="xrandr --output DP-4 --mode 3440x1440 --rate 60 && xrandr --output DP-2 --mode 3440x1440 --rate 60"
 alias keymap="xmodmap ~/.Xmodmap"
 TTY=$(tty)
 if [[ -z $DISPLAY ]] && [[ $TTY == "/dev/tty1" ]]
