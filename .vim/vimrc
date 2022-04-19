@@ -131,6 +131,7 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 " GoTo code navigation.
 nmap <silent> <leader>d <Plug>(coc-definition)
+nmap <silent> <leader>s :CocCommand clangd.switchSourceHeader<cr>
 nmap <silent> <leader>y <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> <leader>r <Plug>(coc-references)
@@ -158,9 +159,20 @@ augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+
 " Allow holding down shift for basic commands
 command W w
 command Q q
 command Wq wq
 command WQ wq
 command E e
+
+" Write new/existing ctags on save
+" DOESN'T delete old ones... will have to do that manually
+autocmd BufWritePost *
+      \ if filereadable('tags') |
+      \   call system('ctags -a '.expand('%')) |
+      \ endif
+
+" ; = :
+nnoremap ; :

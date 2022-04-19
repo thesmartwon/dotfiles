@@ -1,0 +1,4 @@
+clangd.switchSourceHeader
+clangd.ast
+clangd.memoryUsage
+clangd.symbolInfo

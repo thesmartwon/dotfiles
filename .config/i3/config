@@ -120,6 +120,10 @@ set $exitcmd "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you rea
 bindsym $mod+Shift+q exec $exitcmd 
 bindsym $mod+Shift+e exec $exitcmd 
 
+# screenshot
+bindsym $mod+Print exec "flameshot gui"
+bindsym $mod+Shift+Print exec "peek gui"
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -160,8 +164,21 @@ bar {
 # floating_maximum_size 1250 x 1050
 
 # Wallpaper
-# exec_always feh --bg-scale ~/Pictures/skyscraper_girl.jpg
+exec_always feh --bg-scale ~/background.png
 exec_always hsetroot -solid "#000000"
 
 # Compositor
 exec --no-startup-id picom --config ~/.config/compton.conf -b
+
+# Monitors
+workspace $ws1  output "DP-0"
+workspace $ws2  output "DP-0"
+workspace $ws3  output "DP-0"
+workspace $ws4  output "DP-4"
+workspace $ws5  output "DP-4"
+workspace $ws6  output "DP-4"
+workspace $ws7  output "DP-4"
+workspace $ws8  output "DP-2"
+workspace $ws9  output "DP-2"
+workspace $ws10 output "DP-2"
+

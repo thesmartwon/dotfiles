@@ -33,7 +33,7 @@ let g:colors_name = 'spacegray'
 
 " Colorscheme definitions {{{1
 " https://jonasjacek.github.io/colors/
-hi Normal          ctermbg=16    ctermfg=250    guibg=#000000  guifg=#B3B8C4  cterm=NONE      gui=NONE
+hi Normal          ctermbg=NONE ctermfg=250    guibg=NONE     guifg=#B3B8C4  cterm=NONE      gui=NONE
 hi Comment         ctermbg=NONE ctermfg=242    guibg=NONE     guifg=#657785  cterm=NONE      gui=NONE
 hi Conceal         ctermbg=NONE ctermfg=250    guibg=NONE     guifg=#B3B8C4  cterm=NONE      gui=NONE
 hi NonText         ctermbg=NONE ctermfg=8      guibg=NONE     guifg=#3E4853  cterm=NONE      gui=NONE
@@ -48,7 +48,7 @@ hi Statement       ctermbg=NONE ctermfg=13     guibg=NONE     guifg=#A57A9E  cte
 hi String          ctermbg=NONE ctermfg=107    guibg=NONE     guifg=#95B47B  cterm=NONE      gui=NONE
 hi Type            ctermbg=NONE ctermfg=179    guibg=NONE     guifg=#E5C078  cterm=NONE      gui=NONE
 
-hi Cursor          ctermbg=fg   ctermfg=bg     guibg=fg       guifg=bg       cterm=NONE      gui=NONE
+hi Cursor          ctermbg=fg   ctermfg=NONE   guibg=fg       guifg=bg       cterm=NONE      gui=NONE
 hi CursorColumn    ctermbg=0    ctermfg=NONE   guibg=#303030  guifg=NONE     cterm=NONE      gui=NONE
 hi CursorLine      ctermbg=0    ctermfg=NONE   guibg=#303030  guifg=NONE     cterm=NONE      gui=NONE
 hi ColorColumn     ctermbg=235  ctermfg=NONE   guibg=#303537  guifg=NONE     cterm=NONE      gui=NONE
