@@ -31,6 +31,7 @@ set wildignore+=*/tmp/*,*.swp,*.zip,*.exe,*/.git/*,*/node_modules/*,*/dist/*,*/r
 set path+=**
 set wildmenu
 nnoremap <C-p> :find 
+nnoremap <leader>f :Files<CR>
 
 " grep
 set grepprg=rg\ --vimgrep\ --smart-case
@@ -63,7 +64,7 @@ let g:netrw_preview = 1 " vert split for preview
 let g:netrw_browse_split = 4 " open in previous split
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
-noremap <silent> <leader>f :Lexplore<CR>
+noremap <silent> <leader>a :Lexplore<CR>
 set splitright
 
 function IsLoneNetRW()
