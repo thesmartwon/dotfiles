@@ -20,7 +20,7 @@ let g:latex_to_unicode_tab=0
 
 " I edit this file a lot
 nnoremap <leader>e :e $MYVIMRC<cr>
-nnoremap <leader>r :source $MYVIMRC<cr>
+nnoremap <leader><S-r> :source $MYVIMRC<cr>
 
 " let me resize windows
 set ttymouse=sgr " workaround vim bug if not using xterm
@@ -177,3 +177,5 @@ autocmd BufWritePost *
 
 " ; = :
 nnoremap ; :
+
+set laststatus=2
