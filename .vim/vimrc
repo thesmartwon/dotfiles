@@ -10,28 +10,44 @@ set hidden
 map <Space> <Nop>
 let mapleader=" "
 
-" tab using 2 spaces
-set tabstop=2
-set softtabstop=2
+" display tab as 2
+set tabstop=2 softtabstop=2
 set shiftwidth=2
-set expandtab
-set smarttab
+set smartindent
 let g:latex_to_unicode_tab=0
 
 " I edit this file a lot
 nnoremap <leader>e :e $MYVIMRC<cr>
 nnoremap <leader><S-r> :source $MYVIMRC<cr>
 
+" jumping 
+set number
+set relativenumber
+
 " let me resize windows
 set ttymouse=sgr " workaround vim bug if not using xterm
 set mouse=a
 
 " fuzzy find
-set wildignore+=*/tmp/*,*.swp,*.zip,*.exe,*/.git/*,*/node_modules/*,*/dist/*,*/react-styles/css/*,*/lcov-report/*
+set wildignore+=*/tmp/*,*.swp,*.zip,*.exe,*/.git/*,*/node_modules/*,*/dist/*
 set path+=**
 set wildmenu
 nnoremap <C-p> :find 
 nnoremap <leader>f :Files<CR>
+
+" i only use command line window by accident
+map q: <Nop>
+
+" https://www.youtube.com/watch?v=DogKdiRx7ls
+set incsearch
+set nowrap
+set scrolloff=8
+set noswapfile
+set noshowmode
+set completeopt=menuone,noinsert,noselect
+set signcolumn=yes
+set colorcolumn=80
+set cmdheight=2
 
 " grep
 set grepprg=rg\ --vimgrep\ --smart-case
@@ -115,7 +131,6 @@ aug END
 " coc langauge server
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 set number
-set signcolumn=number
 set updatetime=300
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
