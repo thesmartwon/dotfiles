@@ -22,7 +22,6 @@ nnoremap <leader><S-r> :source $MYVIMRC<cr>
 
 " jumping 
 set number
-set relativenumber
 
 " let me resize windows
 set ttymouse=sgr " workaround vim bug if not using xterm
