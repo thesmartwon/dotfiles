@@ -1,4 +1,7 @@
 {
-	"diagnostic.checkCurrentLine": true,
-	"diagnostic.refreshOnInsertMode": true
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.refreshOnInsertMode": true,
+    "go.goplsOptions": {
+        "completeUnimported": true
+    }
 }

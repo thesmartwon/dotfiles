@@ -116,7 +116,9 @@ aug rust
               \%Wwarning:\ %m,
               \%Inote:\ %m,
               \%C\ %#-->\ %f:%l:%c,
-              \%E\ \ left:%m,%C\ right:%m\ %f:%l:%c,%Z
+              \%E\ \ left:%m,
+              \%C\ right:%m\ %f:%l:%c,
+              \%Z
 aug END
 
 " julia make
@@ -126,6 +128,20 @@ aug julia
   "au FileType julia set errorformat=
 aug END
 
+" aug go
+"   au!
+"   au FileType go set makeprg=mage
+"   au FileType go set errorformat=%.%#:\ \ %f:%l:%c:\ %m
+" aug END
+
+aug go
+  au!
+  au FileType go set makeprg=pgon\ go-lint
+  au FileType go set errorformat=
+    \%E%f:%l:%c:\ %m,
+    \%C%.%#,
+    \%Z
+aug END
 
 " coc langauge server
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
@@ -193,3 +209,14 @@ autocmd BufWritePost *
 nnoremap ; :
 
 set laststatus=2
+nnoremap ; :
+
+" go requires handholding
+set autoread
+augroup GoSave
+    autocmd!
+    autocmd BufWritePost *.go silent !goimports -w %
+augroup END
+
+" pretty json
+nnoremap <leader>m :%!python -m json.tool<CR>

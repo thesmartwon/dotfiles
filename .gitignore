@@ -12,5 +12,4 @@
 !.Xmodmap
 !.vim
 .vim/.netrwhist
-.config/coc/extensions/*-data
-.config/coc/memos.json
+.config/coc
