@@ -1,4 +1,4 @@
-export PATH="$HOME/Jts:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.gem/ruby/2.7.0/bin:$PATH"
+export PATH="/opt/lutris-ge-7.0-1-lol-x86_64/bin:$HOME/Jts:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 # export JAVA_HOME="/usr/lib/jvm/zulu-8"
 export NVM_DIR="$HOME/.nvm"
 export ANDROID_SDK_ROOT="/opt/android-sdk"

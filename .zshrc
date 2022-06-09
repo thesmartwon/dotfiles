@@ -96,6 +96,8 @@ source $ZSH/oh-my-zsh.sh
 alias unfixres="xrandr --output DP-0 --mode 2560x1440 --rate 60 && xrandr --output DP-4 --mode 2560x1440 --rate 60 && xrandr --output DP-2 --mode 2560x1440 --rate 60"
 alias fixres="xrandr --output DP-0 --mode 2560x1440 --rate 165 && xrandr --output DP-4 --mode 2560x1440 --rate 165 && xrandr --output DP-2 --mode 2560x1440 --rate 165"
 alias keymap="xmodmap ~/.Xmodmap"
+alias vi="nvim"
+export GIT_EDITOR="nvim"
 TTY=$(tty)
 if [[ -z $DISPLAY ]] && [[ $TTY == "/dev/tty1" ]]
 then
