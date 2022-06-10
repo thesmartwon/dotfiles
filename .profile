@@ -5,6 +5,6 @@ export ANDROID_SDK_ROOT="/opt/android-sdk"
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export EDITOR=vim
+export EDITOR=nvim
 export BROWSER="/usr/bin/brave"
 export JULIA_NUM_THREADS=$(nproc)
