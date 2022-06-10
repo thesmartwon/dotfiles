@@ -7,3 +7,6 @@
 [submodule ".local/share/nvim/site/pack/plugins/start/nvim-lsp-installer"]
 	path = .local/share/nvim/site/pack/plugins/start/nvim-lsp-installer
 	url = https://github.com/williamboman/nvim-lsp-installer
+[submodule ".local/share/nvim/site/pack/plugins/start/coq_nvim"]
+	path = .local/share/nvim/site/pack/plugins/start/coq_nvim
+	url = https://github.com/ms-jpq/coq_nvim
