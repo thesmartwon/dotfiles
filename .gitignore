@@ -1,15 +1,11 @@
 /*
-!.config
-.config/*
 !.config/alacritty
+!.config/compton.conf
 !.config/coc
 !.config/i3
-!.config/compton.conf
+!.config/nvim
 !.gitignore
 !.profile
 !.zshrc
 !.xinitrc
 !.Xmodmap
-!.vim
-.vim/.netrwhist
-.config/coc

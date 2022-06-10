@@ -1,6 +1,9 @@
 [submodule ".vim/pack/git-plugins/start/fzf.vim"]
-	path = .config/nvim/pack/fzf.vim
+	path = .local/share/nvim/site/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule ".vim/pack/git-plugins/start/coc.nvim"]
-	path = .vim/pack/git-plugins/start/coc.nvim
-	url = https://github.com/neoclide/coc.nvim
+[submodule ".config/nvim/pack/nvim-lspconfig"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule ".local/share/nvim/site/pack/plugins/start/nvim-lsp-installer"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim-lsp-installer
+	url = https://github.com/williamboman/nvim-lsp-installer
