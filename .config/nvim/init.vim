@@ -124,50 +124,9 @@ augroup highlight_yank
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 500})
 augroup END
 
-" LSP
-let g:coq_settings = { 'auto_start': 'shut-up', 'display.icons.mode': 'none' }
-lua <<EOF
-	require('gitsigns').setup({
-		on_attach = function(bufnr)
-			local gs = package.loaded.gitsigns
-			local function map(mode, l, r, opts)
-				opts = opts or {}
-				opts.buffer = bufnr
-				vim.keymap.set(mode, l, r, opts)
-			end
-			map('n', ']c', function()
-				if vim.wo.diff then return ']c' end
-				vim.schedule(function() gs.next_hunk() end)
-				return '<Ignore>'
-			end, {expr=true})
-			map('n', '[c', function()
-				if vim.wo.diff then return '[c' end
-				vim.schedule(function() gs.prev_hunk() end)
-				return '<Ignore>'
-			end, {expr=true})
-			map('n', '<leader>b', function() gs.blame_line{full=true} end)
-		end
-	})
-	vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
-	local lspi = require "nvim-lsp-installer"
-	lspi.setup({
-			-- install based on later lsp configs
-			automatic_installation = true,
-			ui = {
-					icons = {
-							server_installed = "✓",
-							server_pending = "➜",
-							server_uninstalled = "✗"
-					}
-			}
-	})
+lua require('lsp')
 
-	local lsp = require "lspconfig"
-	local coq = require "coq"
-	lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
-	lsp.tsserver.setup(coq.lsp_ensure_capabilities())
-	lsp.julials.setup(coq.lsp_ensure_capabilities())
-EOF
+lua require('git')
 
 nmap <leader>rn :lua vim.lsp.buf.rename()<cr>
 nmap <leader>d :lua vim.lsp.buf.definition()<cr>
