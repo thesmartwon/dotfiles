@@ -8,7 +8,7 @@
 source ~/.profile
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/thesm/.oh-my-zsh"
+export ZSH="$HOME/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -103,5 +103,11 @@ then
 	#sway --unsupported-gpu
   startx
 fi
-# set +x
-# exec 2>&3 3>&-
+
+if command -v fzf; then
+	source /usr/share/fzf/key-bindings.zsh
+fi
+
+if command -v fzf; then
+	source <(kubectl completion zsh)
+fi

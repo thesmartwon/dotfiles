@@ -25,7 +25,7 @@ vim.g.coq_settings = {
 local coq = require "coq"
 
 local lsp = require "lspconfig"
-lsp.rust_analyzer.setup({})
-lsp.tsserver.setup({})
-lsp.julials.setup({})
-
+lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
+lsp.tsserver.setup(coq.lsp_ensure_capabilities())
+lsp.julials.setup(coq.lsp_ensure_capabilities())
+lsp.gopls.setup(coq.lsp_ensure_capabilities())
