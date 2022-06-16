@@ -52,7 +52,7 @@ nnoremap <leader>g :Rg<CR>
 
 " https://www.youtube.com/watch?v=DogKdiRx7ls
 set incsearch
-nnoremap <Esc> :noh<CR>
+nnoremap <silent> <Esc> :noh<CR>
 set nowrap
 set scrolloff=8
 set noswapfile
@@ -127,6 +127,27 @@ augroup END
 " LSP
 let g:coq_settings = { 'auto_start': 'shut-up', 'display.icons.mode': 'none' }
 lua <<EOF
+	require('gitsigns').setup({
+		on_attach = function(bufnr)
+			local gs = package.loaded.gitsigns
+			local function map(mode, l, r, opts)
+				opts = opts or {}
+				opts.buffer = bufnr
+				vim.keymap.set(mode, l, r, opts)
+			end
+			map('n', ']c', function()
+				if vim.wo.diff then return ']c' end
+				vim.schedule(function() gs.next_hunk() end)
+				return '<Ignore>'
+			end, {expr=true})
+			map('n', '[c', function()
+				if vim.wo.diff then return '[c' end
+				vim.schedule(function() gs.prev_hunk() end)
+				return '<Ignore>'
+			end, {expr=true})
+			map('n', '<leader>b', function() gs.blame_line{full=true} end)
+		end
+	})
 	vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 	local lspi = require "nvim-lsp-installer"
 	lspi.setup({
@@ -154,3 +175,12 @@ nmap <leader>i :lua vim.lsp.buf.implementation()<cr>
 nmap <leader>r :lua vim.lsp.buf.references()<cr>
 nmap <leader>h :lua vim.lsp.buf.hover()<cr>
 nmap <silent> <leader>s :CocCommand clangd.switchSourceHeader<cr>
+
+function! s:empty_message(timer)
+	echon ''
+endfunction
+
+augroup cmd_msg_cls
+    autocmd!
+    autocmd CmdlineLeave :  call timer_start(800, funcref('s:empty_message'))
+augroup END

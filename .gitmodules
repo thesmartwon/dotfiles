@@ -10,3 +10,6 @@
 [submodule ".local/share/nvim/site/pack/plugins/start/coq_nvim"]
 	path = .local/share/nvim/site/pack/plugins/start/coq_nvim
 	url = https://github.com/ms-jpq/coq_nvim
+[submodule ".local/share/nvim/site/pack/plugins/start/gitsigns.nvim"]
+	path = .local/share/nvim/site/pack/plugins/start/gitsigns.nvim
+	url = https://github.com/lewis6991/gitsigns.nvim
