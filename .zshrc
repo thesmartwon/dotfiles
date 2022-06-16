@@ -104,10 +104,10 @@ then
   startx
 fi
 
-if command -v fzf; then
+if command -v fzf &> /dev/null; then
 	source /usr/share/fzf/key-bindings.zsh
 fi
 
-if command -v fzf; then
+if command -v kubectl &> /dev/null; then
 	source <(kubectl completion zsh)
 fi
