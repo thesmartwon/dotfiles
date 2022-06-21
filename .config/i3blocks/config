@@ -12,7 +12,7 @@ separator_block_width=15
 
 [iface]
 command=$SCRIPT_DIR/iface/iface
-interval=60
+interval=5
 
 [volume-pulseaudio]
 command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio
