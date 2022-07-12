@@ -65,14 +65,14 @@ set cmdheight=1
 nnoremap <C-f> :%s/
 
 " Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <Esc>[1;5D <c-w>h
-map <Esc>[1;5B <c-w>j
-map <Esc>[1;5A <c-w>k
-map <Esc>[1;5C <c-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <Esc>[1;5D <c-w>h
+nnoremap <Esc>[1;5B <c-w>j
+nnoremap <Esc>[1;5A <c-w>k
+nnoremap <Esc>[1;5C <c-w>l
 
 " netrw is an abonimation
 let loaded_netrwPlugin = 1
