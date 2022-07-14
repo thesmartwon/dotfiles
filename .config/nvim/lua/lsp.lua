@@ -20,7 +20,6 @@ vim.g.coq_settings = {
 		["ghost_text.enabled"] = false,
 		["pum.source_context"] = {"", ""}
 	}
-
 }
 local coq = require "coq"
 
@@ -29,3 +28,4 @@ lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
 lsp.tsserver.setup(coq.lsp_ensure_capabilities())
 lsp.julials.setup(coq.lsp_ensure_capabilities())
 lsp.gopls.setup(coq.lsp_ensure_capabilities())
+lsp.pyright.setup(coq.lsp_ensure_capabilities())

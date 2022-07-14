@@ -67,8 +67,28 @@ esac
 if command -v iw > /dev/null && iw $IF info > /dev/null 2>&1; then
 	WIFI_NAME=$(iw $IF info | grep -Po '(?<=ssid ).*' | tr -d " \t\n\r")
 fi
-message="$LABEL $WIFI_NAME ($IPADDR)"
 
 #------------------------------------------------------------------------
 
-echo "$message"
+COLOR_GE80=${COLOR_GE80:-#00FF00}
+COLOR_GE60=${COLOR_GE60:-#FFF600}
+COLOR_GE40=${COLOR_GE40:-#FFAE00}
+COLOR_LOWR=${COLOR_LOWR:-#FF0000}
+COLOR_DOWN=${COLOR_DOWN:-#FF0000}
+
+QUALITY=$(iw dev $IF link | grep 'dBm$' | grep -Eoe '-[0-9]{2}' | awk '{print  ($1 > -50 ? 100 :($1 < -100 ? 0 : ($1+100)*2))}')
+
+message="$LABEL $WIFI_NAME $IPADDR ($QUALITY%)"
+echo $message
+echo $message
+
+# color
+if [[ $QUALITY -ge 80 ]]; then
+    echo $COLOR_GE80
+elif [[ $QUALITY -ge 60 ]]; then
+    echo $COLOR_GE60
+elif [[ $QUALITY -ge 40 ]]; then
+    echo $COLOR_GE40
+else
+    echo $COLOR_LOWR
+fi
