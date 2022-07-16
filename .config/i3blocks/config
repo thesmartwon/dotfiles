@@ -10,6 +10,10 @@
 separator=true
 separator_block_width=15
 
+[bandwidth]
+command=$SCRIPT_DIR/bandwidth/bandwidth
+interval=1
+
 [iface]
 command=$SCRIPT_DIR/iface/iface
 interval=5

@@ -125,7 +125,6 @@ augroup highlight_yank
 augroup END
 
 lua require('lsp')
-
 lua require('git')
 
 nmap <leader>rn :lua vim.lsp.buf.rename()<cr>
@@ -133,7 +132,9 @@ nmap <leader>d :lua vim.lsp.buf.definition()<cr>
 nmap <leader>i :lua vim.lsp.buf.implementation()<cr>
 nmap <leader>r :lua vim.lsp.buf.references()<cr>
 nmap <leader>h :lua vim.lsp.buf.hover()<cr>
-nmap <silent> <leader>s :CocCommand clangd.switchSourceHeader<cr>
+nmap <leader>j :lua vim.diagnostic.goto_next()<cr>
+nmap <leader>k :lua vim.diagnostic.goto_prev()<cr>
+"nmap <silent> <leader>s :CocCommand clangd.switchSourceHeader<cr>
 
 function! s:empty_message(timer)
 	echon ''
