@@ -9,3 +9,4 @@ export EDITOR=nvim
 export BROWSER="/usr/bin/brave"
 export JULIA_NUM_THREADS=$(nproc)
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!{node_modules/*,.git/*,target/*}"'
+source $HOME/.secrets

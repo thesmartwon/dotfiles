@@ -36,7 +36,6 @@ map q: <Nop>
 
 " nice menu when typing :find
 set wildmenu
-set wildmode=longest,list,full
 set wildignore+=**/.git/*
 set wildignore+=**/.node_modules/*
 set wildignore+=**/tmp/*
