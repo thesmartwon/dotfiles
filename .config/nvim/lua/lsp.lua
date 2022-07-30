@@ -13,6 +13,7 @@ lspi.setup({
 })
 
 vim.g.coq_settings = {
+	["keymap.jump_to_mark"] = '',
 	auto_start = "shut-up",
 	["clients.snippets.warn"] = {},
 	display = {
