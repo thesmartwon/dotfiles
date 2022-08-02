@@ -1,4 +1,4 @@
-export PATH="/opt/lutris-ge-7.0-1-lol-x86_64/bin:$HOME/Jts:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="/opt/lutris-ge-7.0-1-lol-x86_64/bin:$HOME/Jts:$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 # export JAVA_HOME="/usr/lib/jvm/zulu-8"
 export NVM_DIR="$HOME/.nvm"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
