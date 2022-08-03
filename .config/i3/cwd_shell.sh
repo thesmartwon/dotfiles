@@ -5,5 +5,5 @@ CHILD_PID=$(pgrep -P $PID)
 if [ -e "/proc/$CHILD_PID/cwd" ]; then
   i3-sensible-terminal --working-directory $(readlink /proc/$CHILD_PID/cwd)
 else
-	i3-sensible-terminal --working-directory ~/src
+	i3-sensible-terminal
 fi

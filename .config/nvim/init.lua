@@ -1,0 +1,6 @@
+require('vimrc')
+require('ui')
+require('keybinds')
+require('autocmd')
+require('lsp')
+require('git')
