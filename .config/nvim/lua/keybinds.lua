@@ -9,8 +9,9 @@ whichkey.setup({
 
 keymaps.common = {
 	n = {
-		['<Space>'] = { '<Nop>', '' },
-		['q:'] = { '<Nop>', '' },
+		['<Space>'] = { '<Nop>', 'Why does this move one char right anyways?' },
+		['q:'] = { '<Nop>', 'Only by mistake.' },
+		['s'] = { '<Nop>', 'I use cl for better or worse' },
 		[';'] = { ':', 'I don\'t like pressing shift all the time' },
 		['<C-f>'] = { ':%s/', 'Start replace' },
 		['<C-h>'] = { '<C-w>h', 'Goto left window' },
@@ -51,6 +52,7 @@ keymaps.common = {
 			h = { vim.lsp.buf.hover, 'Hover' },
 			r = { vim.lsp.buf.references, 'Find references' },
 			rn = { vim.lsp.buf.rename, 'Rename symbol' },
+			s = { '<cmd>ClangdSwitchSourceHeader<CR>', 'Switch between source/header file' },
 		},
 		['[d'] = { vim.diagnostic.goto_prev, 'Goto previous diagnostic' },
 		[']d'] = { vim.diagnostic.goto_next, 'Goto next diagnostic' },

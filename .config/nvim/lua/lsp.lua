@@ -30,6 +30,7 @@ lsp.tsserver.setup(coq.lsp_ensure_capabilities())
 lsp.julials.setup(coq.lsp_ensure_capabilities())
 lsp.gopls.setup(coq.lsp_ensure_capabilities())
 lsp.pyright.setup(coq.lsp_ensure_capabilities())
+lsp.clangd.setup(coq.lsp_ensure_capabilities())
 lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 	settings = {
 		Lua = {
