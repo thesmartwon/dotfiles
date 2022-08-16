@@ -5,5 +5,11 @@ CHILD_PID=$(pgrep -P $PID)
 if [ -e "/proc/$CHILD_PID/cwd" ]; then
   i3-sensible-terminal --working-directory $(readlink /proc/$CHILD_PID/cwd)
 else
-	i3-sensible-terminal
+	workhome=~/src/github.com/polygon-io
+	homedir=~/src
+	if [[ -d $workhome ]]
+	then
+		homedir=$workhome
+	fi
+	i3-sensible-terminal --working-directory $homedir
 fi

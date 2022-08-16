@@ -1,5 +1,4 @@
 local g = vim.g
-g.syntax = 'enable'
 g.mapleader = ' '
 g.colorscheme = 'spacegray'
 
