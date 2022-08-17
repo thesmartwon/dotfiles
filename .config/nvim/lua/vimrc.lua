@@ -36,6 +36,8 @@ o.statusline = '%<%f %h%m%r%=%{"[".(&fenc==""?&enc:&fenc).((exists("+bomb") && &
 o.ignorecase = true
 o.smartcase = true
 
+o.splitright = true
+
 local disabled_plugins = {
 	'2html_plugin',
 	'getscript',
