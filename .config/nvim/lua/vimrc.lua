@@ -28,6 +28,11 @@ o.undofile = true  -- save undo history to file
 o.showmode = false -- i know what mode i'm in
 o.completeopt = 'menu,menuone,noselect' -- when to offer completion menu
 o.colorcolumn = '80' -- right border
+o.statusline = '%<%f %h%m%r%=%{"[".(&fenc==""?&enc:&fenc).((exists("+bomb") && &bomb)?",B":"")."] "}%k %-14.(%l,%c%V%) %P'
+
+-- search
+o.ignorecase = true
+o.smartcase = true
 
 local disabled_plugins = {
 	'2html_plugin',
