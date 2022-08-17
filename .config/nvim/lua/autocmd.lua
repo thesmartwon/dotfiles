@@ -7,7 +7,10 @@ local commands = {
 	},
 	clear_command = {
 		{ 'CmdlineLeave', '*', [[call timer_start(800, funcref('s:ClearCommand'))]] }
-	}
+	},
+	diagnostic_hover = {
+		{ 'CursorHold', '*', [[lua vim.diagnostic.open_float({ scope = "line", focusable = false })]] }
+	},
 }
 
 vim.api.nvim_command([[

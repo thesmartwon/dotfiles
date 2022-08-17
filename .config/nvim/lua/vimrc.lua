@@ -9,6 +9,8 @@ o.termguicolors = true
 o.clipboard = 'unnamedplus'
 -- allow backspacing autoindent, eol, before start of insert
 o.backspace = 'indent,eol,start'
+-- show diagnostics and autosave quickly
+o.updatetime = 500
 
 -- display tab as 2 spaces
 o.smartindent = true
