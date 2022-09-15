@@ -37,6 +37,7 @@ o.ignorecase = true
 o.smartcase = true
 
 o.splitright = true
+g.fzf_preview_window = {'right:25%:hidden', 'ctrl-/'}
 
 local disabled_plugins = {
 	'2html_plugin',
