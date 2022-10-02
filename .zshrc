@@ -93,8 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias unfixres="xrandr --output DP-0 --mode 2560x1440 --rate 60 && xrandr --output DP-4 --mode 2560x1440 --rate 60 && xrandr --output DP-2 --mode 2560x1440 --rate 60"
-alias fixres="xrandr --output DP-0 --mode 2560x1440 --rate 165 && xrandr --output DP-4 --mode 2560x1440 --rate 165 && xrandr --output DP-2 --mode 2560x1440 --rate 165"
+alias fixres="~/fixres.sh"
 alias keymap="xmodmap ~/.Xmodmap"
 alias vim="nvim"
 alias mc="mcli"
