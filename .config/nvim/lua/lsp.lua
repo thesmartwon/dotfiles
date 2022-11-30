@@ -26,12 +26,6 @@ vim.g.coq_settings = {
 local coq = require("coq")
 
 local lsp = require("lspconfig")
-lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
-lsp.tsserver.setup(coq.lsp_ensure_capabilities())
-lsp.julials.setup(coq.lsp_ensure_capabilities())
-lsp.gopls.setup(coq.lsp_ensure_capabilities())
-lsp.pyright.setup(coq.lsp_ensure_capabilities())
-lsp.clangd.setup(coq.lsp_ensure_capabilities())
 lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 	settings = {
 		Lua = {
@@ -46,3 +40,10 @@ lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 		}
 	}
 }))
+lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
+lsp.tsserver.setup(coq.lsp_ensure_capabilities())
+lsp.julials.setup(coq.lsp_ensure_capabilities())
+lsp.gopls.setup(coq.lsp_ensure_capabilities())
+lsp.pyright.setup(coq.lsp_ensure_capabilities())
+lsp.clangd.setup(coq.lsp_ensure_capabilities())
+lsp.zls.setup(coq.lsp_ensure_capabilities())
