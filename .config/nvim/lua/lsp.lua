@@ -1,7 +1,7 @@
 vim.diagnostic.config({ virtual_text = false })
 vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
-local lspi = require("nvim-lsp-installer")
-lspi.setup({
+require("mason").setup()
+require("mason-lspconfig").setup({
 	-- install based on later lsp configs
 	automatic_installation = true,
 	ui = {
