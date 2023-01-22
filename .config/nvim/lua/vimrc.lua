@@ -29,7 +29,7 @@ o.swapfile = false -- swapfiles are pointless
 o.undofile = true  -- save undo history to file
 o.showmode = false -- i know what mode i'm in
 o.completeopt = 'menu,menuone,noselect' -- when to offer completion menu
-o.colorcolumn = '80' -- right border
+o.colorcolumn = '100' -- right border
 o.statusline = '%<%f %h%m%r%=%{"[".(&fenc==""?&enc:&fenc).((exists("+bomb") && &bomb)?",B":"")."] "}%k %-14.(%l,%c%V%) %P'
 
 -- search
