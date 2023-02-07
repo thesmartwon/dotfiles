@@ -40,6 +40,7 @@ alias vim="nvim"
 alias g="git"
 alias gaa="git add --all"
 alias gc="git commit"
+alias gp="git push"
 alias gpsup="git push --set-upstream origin master"
 
 # I trigger this by accident cuz i like spamming escape
