@@ -38,6 +38,7 @@ alias la='ls -d .*'
 alias fixres="~/fixres.sh"
 alias vim="nvim"
 alias g="git"
+alias ga="git add"
 alias gaa="git add --all"
 alias gc="git commit"
 alias gp="git push"
