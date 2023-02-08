@@ -22,8 +22,14 @@ bracketed-paste() {
 }
 zle -N bracketed-paste
 
-# Can't backspace newlines without this
+# Simple keybinds
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
 bindkey '^?' backward-delete-char
+# I trigger this by accident cuz i like spamming escape
+bindkey -r "^["
+# Use ctrl+arrows to skip words
+bindkey '^[[1;5D' backward-word '^[[1;5C' forward-word
 
 autoload -Uz compinit
 compinit
@@ -34,6 +40,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 alias ls='ls --color=auto'
 alias ll='ls -la'
 alias la='ls -d .*'
+alias l="ls"
 
 alias fixres="~/fixres.sh"
 alias vim="nvim"
@@ -43,11 +50,6 @@ alias gaa="git add --all"
 alias gc="git commit"
 alias gp="git push"
 alias gpsup="git push --set-upstream origin master"
-
-# I trigger this by accident cuz i like spamming escape
-bindkey -r "^["
-# Use ctrl+arrows to skip words
-bindkey '^[[1;5D' backward-word '^[[1;5C' forward-word
 
 if [[ -z $DISPLAY ]] && [[ $(tty) == "/dev/tty1" ]]
 then
