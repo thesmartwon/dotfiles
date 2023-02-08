@@ -23,6 +23,8 @@ bracketed-paste() {
 zle -N bracketed-paste
 
 # Simple keybinds
+zmodload zsh/complist
+bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^?' backward-delete-char
