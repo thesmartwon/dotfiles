@@ -32,6 +32,13 @@ bindkey '^?' backward-delete-char
 bindkey -r "^["
 # Use ctrl+arrows to skip words
 bindkey '^[[1;5D' backward-word '^[[1;5C' forward-word
+# Nice history search
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 
 autoload -Uz compinit
 compinit
@@ -51,6 +58,8 @@ alias ga="git add"
 alias gaa="git add --all"
 alias gc="git commit"
 alias gp="git push"
+alias gl="git pull"
+alias gf="git fetch"
 alias gpsup="git push --set-upstream origin master"
 
 if [[ -z $DISPLAY ]] && [[ $(tty) == "/dev/tty1" ]]

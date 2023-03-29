@@ -11,6 +11,7 @@ keymaps.common = {
 	n = {
 		['<Space>'] = { '<Nop>', 'Why does this move one char right anyways?' },
 		['q:'] = { '<Nop>', 'Only by mistake.' },
+		[';'] = { ':', 'I never use ; to goto next instance in line.' },
 		['s'] = { '<Nop>', 'I use cl for better or worse' },
 		['<C-f>'] = { ':%s/', 'Start replace' },
 		['<C-h>'] = { '<C-w>h', 'Goto left window' },

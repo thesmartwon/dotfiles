@@ -165,13 +165,8 @@ bar {
 # floating_minimum_size 350 x 250
 # floating_maximum_size 1250 x 1050
 
-# Wallpaper
-exec_always feh --bg-scale ~/background.png
-exec_always hsetroot -solid "#000000"
-exec_always --no-startup-id ~/.screenlayout/2x1440p_3.sh
-
 # Compositor
-exec --no-startup-id picom --config ~/.config/compton.conf -b
+exec --no-startup-id xcompmgr -C &
 
 # Monitors
 workspace $ws1  output "DP-0"
