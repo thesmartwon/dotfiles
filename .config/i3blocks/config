@@ -18,8 +18,8 @@ interval=1
 command=$SCRIPT_DIR/iface/iface
 interval=5
 
-[volume-pulseaudio]
-command=$SCRIPT_DIR/volume-pulseaudio/volume-pulseaudio
+[volume-pipewire]
+command=$SCRIPT_DIR/volume-pipewire/volume-pipewire
 interval=once
 signal=1
 
