@@ -14,7 +14,11 @@ autoload -Uz vcs_info
 precmd () { vcs_info } # load before displaying prompt
 zstyle ':vcs_info:git:*' formats '(%b)'
 setopt prompt_subst
-PS1='%F{blue}%~%f%F{red}${vcs_info_msg_0_}%f$ '
+# https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+CWD='%F{blue}%~%f'
+VCS='%F{magenta}${vcs_info_msg_0_}%f'
+RET="%(?.%F{white}.%F{red})$%f"
+PS1="${CWD}${VCS}${RET} "
 
 # Remove trailing newlines from pasted text
 bracketed-paste() {
@@ -28,6 +32,7 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^?' backward-delete-char
+bindkey '^H' backward-kill-word
 # I trigger this by accident cuz i like spamming escape
 bindkey -r "^["
 # Use ctrl+arrows to skip words
@@ -40,11 +45,68 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
+# Completion https://thevaluable.dev/zsh-completion-guide-examples/
 autoload -Uz compinit
 compinit
-zstyle ':completion::complete:*' gain-privileges 1
-zstyle ':completion:*' menu select
+_comp_options+=(globdots) # With hidden files
+
+setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
+setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
+setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
+
+# https://github.com/sorin-ionescu/prezto/blob/master/modules/completion/init.zsh
+# Defaults.
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+
+# Group matches and describe.
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+
+# Fuzzy match mistyped completions.
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+unsetopt CASE_GLOB
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+# Increase the number of errors based on the length of the typed word. But make
+# sure to cap at 4 the max-errors to avoid hanging.
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?4:($#PREFIX+$#SUFFIX)/3))numeric)'
+
+# Directories
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
+zstyle ':completion:*' squeeze-slashes true
+
+# History
+zstyle ':completion:*:history-words' stop yes
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' list false
+zstyle ':completion:*:history-words' menu yes
+
+# Environment Variables
+zstyle ':completion::*:(-command-|export):*' fake-parameters ${${${_comps[(I)-value-*]#*,}%%,*}:#-*-}
+
+# Kill
+zstyle ':completion:*:*:*:*:processes' command 'ps -u $LOGNAME -o pid,user,command -w'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:*:kill:*' force-list always
+zstyle ':completion:*:*:kill:*' insert-ids single
+
+# Man
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections true
 
 alias ls='ls --color=auto'
 alias ll='ls -la'
@@ -57,21 +119,14 @@ alias g="git"
 alias ga="git add"
 alias gaa="git add --all"
 alias gc="git commit"
+alias gcb="git checkout -b"
 alias gp="git push"
 alias gl="git pull"
 alias gf="git fetch"
-alias gpsup="git push --set-upstream origin master"
+alias gpsup="git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
 
 if [[ -z $DISPLAY ]] && [[ $(tty) == "/dev/tty1" ]]
 then
 	#sway --unsupported-gpu
   startx
-fi
-
-if command -v fzf &> /dev/null; then
-	source /usr/share/fzf/key-bindings.zsh
-fi
-
-if command -v kubectl &> /dev/null; then
-	source <(kubectl completion zsh)
 fi

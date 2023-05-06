@@ -1,30 +1,43 @@
 [submodule ".vim/pack/git-plugins/start/fzf.vim"]
 	path = .local/share/nvim/site/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule ".config/nvim/pack/nvim-lspconfig"]
-	path = .local/share/nvim/site/pack/plugins/start/nvim-lspconfig
-	url = https://github.com/neovim/nvim-lspconfig
-[submodule ".local/share/nvim/site/pack/plugins/start/coq_nvim"]
-	path = .local/share/nvim/site/pack/plugins/start/coq_nvim
-	url = https://github.com/ms-jpq/coq_nvim
+	branch = master
 [submodule ".local/share/nvim/site/pack/plugins/start/gitsigns.nvim"]
 	path = .local/share/nvim/site/pack/plugins/start/gitsigns.nvim
 	url = https://github.com/lewis6991/gitsigns.nvim
-[submodule ".local/share/nvim/site/pack/plugins/start/which-key.nvim"]
-	path = .local/share/nvim/site/pack/plugins/start/which-key.nvim
-	url = https://github.com/folke/which-key.nvim
-[submodule ".local/share/nvim/site/pack/plugins/start/mason.nvim"]
-	path = .local/share/nvim/site/pack/plugins/start/mason.nvim
-	url = https://github.com/williamboman/mason.nvim
+	branch = main
 [submodule ".local/share/nvim/site/pack/plugins/start/mason-lspconfig.nvim"]
 	path = .local/share/nvim/site/pack/plugins/start/mason-lspconfig.nvim
 	url = https://github.com/williamboman/mason-lspconfig.nvim
-[submodule ".local/share/nvim/site/pack/plugins/start/zig.vim"]
-	path = .local/share/nvim/site/pack/plugins/start/zig.vim
-	url = https://github.com/ziglang/zig.vim
-[submodule ".local/share/nvim/site/pack/plugins/start/vim-glsl"]
-	path = .local/share/nvim/site/pack/plugins/start/vim-glsl
-	url = https://github.com/tikhomirov/vim-glsl
-[submodule ".local/share/nvim/site/pack/plugins/start/vim-qml"]
-	path = .local/share/nvim/site/pack/plugins/start/vim-qml
-	url = https://github.com/peterhoeg/vim-qml
+	branch = main
+[submodule ".local/share/nvim/site/pack/plugins/start/mason.nvim"]
+	path = .local/share/nvim/site/pack/plugins/start/mason.nvim
+	url = https://github.com/williamboman/mason.nvim
+	branch = main
+[submodule ".config/nvim/pack/nvim-lspconfig"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+	branch = master
+[submodule ".local/share/nvim/site/pack/plugins/start/nvim-treesitter"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
+	branch = master
+[submodule ".local/share/nvim/site/pack/plugins/start/which-key.nvim"]
+	path = .local/share/nvim/site/pack/plugins/start/which-key.nvim
+	url = https://github.com/folke/which-key.nvim
+	branch = main
+[submodule ".local/share/nvim/site/pack/plugins/start/nvim-cmp"]
+	path = .local/share/nvim/site/pack/plugins/start/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp
+	branch = main
+[submodule ".local/share/nvim/site/pack/plugins/start/cmp-nvim-lsp"]
+	path = .local/share/nvim/site/pack/plugins/start/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp
+	branch = main
+[submodule ".local/share/nvim/site/pack/plugins/start/tokyonight.nvim"]
+	path = .local/share/nvim/site/pack/plugins/start/tokyonight.nvim
+	url = https://github.com/folke/tokyonight.nvim
+	branch = main
+[submodule ".local/share/nvim/site/pack/plugins/start/barbar.nvim"]
+	path = .local/share/nvim/site/pack/plugins/start/barbar.nvim
+	url = https://github.com/romgrk/barbar.nvim

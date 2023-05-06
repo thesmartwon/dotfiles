@@ -1,6 +1,6 @@
 local g = vim.g
 g.mapleader = ' '
-g.colorscheme = 'spacegray'
+g.rust_recommended_style = 0
 
 local o = vim.opt
 o.mouse = 'a'
@@ -76,3 +76,6 @@ local disabled_plugins = {
 for _, plugin in pairs(disabled_plugins) do
 	g['loaded_' .. plugin] = 1
 end
+
+-- disables ftplugin which shouldn't even be enabled...
+vim.cmd('filetype plugin off')

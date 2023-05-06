@@ -7,24 +7,42 @@ whichkey.setup({
 	},
 })
 
+local function open_closed_fold()
+	if vim.fn.foldclosed('.') ~= -1 then
+		-- Dunno why `zo` sometimes doesn't work...
+		for _=1,20 do
+			vim.cmd('norm! zo')
+		end
+	end
+	vim.cmd('norm! \r')
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+			vim.cmd("cclose")
+			vim.cmd("lclose")
+			break
+    end
+  end
+end
+
 keymaps.common = {
 	n = {
 		['<Space>'] = { '<Nop>', 'Why does this move one char right anyways?' },
 		['q:'] = { '<Nop>', 'Only by mistake.' },
 		[';'] = { ':', 'I never use ; to goto next instance in line.' },
 		['s'] = { '<Nop>', 'I use cl for better or worse' },
-		['<C-f>'] = { ':%s/', 'Start replace' },
+		['<A-f>'] = { ':%s/', 'Start replace' },
 		['<C-h>'] = { '<C-w>h', 'Goto left window' },
 		['<C-j>'] = { '<C-w>j', 'Goto lower window' },
 		['<C-k>'] = { '<C-w>k', 'Goto higher window' },
 		['<C-l>'] = { '<C-w>l', 'Goto right window' },
-		['<ESC>'] = { '<cmd>noh | echon<CR>', 'No highlight', silent=true },
 		['<Tab>'] = { '<cmd>bn<CR>', 'Next buffer' },
 		['<S-Tab>'] = { '<cmd>bp<CR>', 'Previous buffer' },
 		['<leader>'] = {
 			e = { '<cmd>e $MYVIMRC<CR>', 'Edit nvim config' },
 			f = { '<cmd>Files<CR>', 'Find files' },
 			g = { '<cmd>Rg<CR>', 'Find files' },
+			x = { '<cmd>bd<CR>', 'Close buffer' },
+			v = { '<cmd>vsplit<CR>', 'Vertical split' },
 			--f = { '<cmd>Telescope find_files<CR>', 'Find files' },
 			--a = { '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>', 'Find all' },
 			--g = { '<cmd>Telescope live_grep<CR>', 'Live grep' },
@@ -55,6 +73,15 @@ keymaps.common = {
 		},
 		['[d'] = { vim.diagnostic.goto_prev, 'Goto previous diagnostic' },
 		[']d'] = { vim.diagnostic.goto_next, 'Goto next diagnostic' },
+		-- folding
+		['<A-j>'] = { 'zj', 'Goto next fold' },
+		['<A-k>'] = { 'zk', 'Goto previous fold' },
+		['<ESC>'] = { '<cmd>noh | echon<CR>', 'No highlight', silent=true },
+		['<CR>'] = { open_closed_fold, 'Open and go line down', silent=true },
+		['z{'] = { 'zm', 'Increase folding' },
+		['z}'] = { 'zr', 'Reduce folding' },
+		['g{'] = { 'zM', 'Fold all' },
+		['g}'] = { 'zR', 'UnFold all' },
 	},
 	i = {
 		['<C-Space>'] = { '<C-X><C-O>', 'Omnifunc' },

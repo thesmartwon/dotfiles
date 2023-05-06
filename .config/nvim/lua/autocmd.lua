@@ -1,30 +1,20 @@
 local commands = {
-	restore_cursor = {
-		{ 'BufRead', '*', [[call setpos(".", getpos("'\""))]] };
-	},
-	lua_highlight = {
-		{ "TextYankPost", "*", [[silent! lua vim.highlight.on_yank() {higroup="IncSearch", timeout=500}]] };
-	},
-	clear_command = {
-		{ 'CmdlineLeave', '*', [[call timer_start(800, funcref('s:ClearCommand'))]] }
-	},
-	diagnostic_hover = {
-		{ 'CursorHold', '*', [[lua vim.diagnostic.open_float({ scope = "line", focusable = false })]] }
-	},
+	-- Highlight yank
+	{"TextYankPost", function() vim.highlight.on_yank() end},
+	-- Show diagnostic on hover
+	{"CursorHold", function() vim.diagnostic.open_float({ scope = "line", focusable = false }) end},
+	-- Clear command line
+	{"CmdlineLeave", function()
+		vim.fn.timer_start(800, function()
+			vim.cmd("echon")
+		end)
+	end},
+	{{'BufWinEnter', 'FileType'}, function()
+		vim.cmd([[call setpos(".", getpos("'\""))]])
+	end}
 }
 
-vim.api.nvim_command([[
-function! s:ClearCommand(timer)
-	echon ''
-endfunction
-]])
-
-for group_name, definition in pairs(commands) do
-	vim.api.nvim_command('augroup '..group_name)
-	vim.api.nvim_command('autocmd!')
-	for _, def in ipairs(definition) do
-		local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
-		vim.api.nvim_command(command)
-	end
-	vim.api.nvim_command('augroup END')
+for _, command in pairs(commands) do
+	vim.api.nvim_create_autocmd(command[1], { callback = command[2] })
 end
+
