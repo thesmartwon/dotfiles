@@ -7,7 +7,7 @@ export BROWSER="/usr/bin/brave"
 export JULIA_NUM_THREADS=$(nproc)
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g !'{.git/*,node_modules/*,target/*,extern/*}'"
 export MANPATH="/usr/local/man:$MANPATH"
-export MAKEFLAGS="-j$(nproc)"
+export MAKEFLAGS="-j$(($(nproc) / 2))"
 if type "dircolors" > /dev/null; then
 	eval "$(dircolors -b)"
 fi
