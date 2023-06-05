@@ -11,6 +11,11 @@ local commands = {
 	end},
 	{{'BufWinEnter', 'FileType'}, function()
 		vim.cmd([[call setpos(".", getpos("'\""))]])
+	end},
+	{{ "BufWritePre" }, function()
+		local save_cursor = vim.fn.getpos(".")
+		vim.cmd([[%s/\s\+$//e]])
+		vim.fn.setpos(".", save_cursor)
 	end}
 }
 
