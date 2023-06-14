@@ -17,6 +17,13 @@ o.smartindent = true
 o.tabstop = 2
 o.softtabstop = 2
 o.shiftwidth = 2
+-- see autocmd.lua for more tab opts
+-- towards displaying 4 space tabs as 2 spaces (see autocmd.lua for the rest)
+o.concealcursor = 'nvi'
+o.conceallevel = 1
+-- display tabs different than spaces to maintain sanity
+o.list = true
+o.listchars = { tab = '|-' }
 -- g.latex_to_unicode_tab = 0
 
 -- line numbers
@@ -70,12 +77,7 @@ local disabled_plugins = {
 	'optwin',
 	'compiler',
 	'bugreport',
-	'ftplugin',
 }
-
 for _, plugin in pairs(disabled_plugins) do
 	g['loaded_' .. plugin] = 1
 end
-
--- disables ftplugin which shouldn't even be enabled...
-vim.cmd('filetype plugin off')

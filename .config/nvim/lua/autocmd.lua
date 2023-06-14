@@ -9,14 +9,20 @@ local commands = {
 			vim.cmd("echon")
 		end)
 	end},
+	-- Return cursor to last session
 	{{'BufWinEnter', 'FileType'}, function()
 		vim.cmd([[call setpos(".", getpos("'\""))]])
+		-- ALWAYS display tab as 2 spaces
+		vim.opt.tabstop = 2
+		-- displaying 4 space tabs as 2 space tabs
+		vim.cmd('syntax match spaces /  / conceal cchar= ')
 	end},
+	-- Remove trailing whitespace
 	{{ "BufWritePre" }, function()
 		local save_cursor = vim.fn.getpos(".")
 		vim.cmd([[%s/\s\+$//e]])
 		vim.fn.setpos(".", save_cursor)
-	end}
+	end},
 }
 
 for _, command in pairs(commands) do

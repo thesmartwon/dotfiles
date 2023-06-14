@@ -1,3 +1,4 @@
+-- https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
 vim.diagnostic.config({ virtual_text = false })
 -- vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 require("mason").setup()
@@ -15,32 +16,34 @@ require("mason-lspconfig").setup({
 
 local cmp = require("cmp")
 local has_words_before = function()
-  unpack = unpack or table.unpack
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+	unpack = unpack or table.unpack
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 cmp.setup({
 	snippet = {},
 	mapping = cmp.mapping.preset.insert({
-    ['<Tab>'] = function(fallback)
-      if not cmp.select_next_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end
-    end,
+		['<C-x><C-o>'] = cmp.mapping.complete(),
 
-    ['<S-Tab>'] = function(fallback)
-      if not cmp.select_prev_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
-      end
-    end,
+		['<Tab>'] = function(fallback)
+			if not cmp.select_next_item() then
+				if vim.bo.buftype ~= 'prompt' and has_words_before() then
+					cmp.complete()
+				else
+					fallback()
+				end
+			end
+		end,
+
+		['<S-Tab>'] = function(fallback)
+			if not cmp.select_prev_item() then
+				if vim.bo.buftype ~= 'prompt' and has_words_before() then
+					cmp.complete()
+				else
+					fallback()
+				end
+			end
+		end,
 	}),
 	sources = cmp.config.sources(
 		{{ name = 'nvim_lsp' }},
@@ -77,13 +80,13 @@ lsp.zls.setup({ capabilities = caps, settings = { enable_autofix = false } })
 -- treesitter
 -- local treesitter = require("nvim-treesitter.configs")
 -- treesitter.setup({
--- 	auto_install = true,
--- 	ensure_install = { "lua", "rust", "typescript", "julia", "python", "cpp", "c", "zig" },
--- 	sync_install = false,
--- 	highlight = {
--- 		enable = false,
--- 	},
--- 	indent = { enable = false }
+--	auto_install = true,
+--	ensure_install = { "lua", "rust", "typescript", "julia", "python", "cpp", "c", "zig" },
+--	sync_install = false,
+--	highlight = {
+--		enable = false,
+--	},
+--	indent = { enable = false }
 -- })
 vim.wo.foldmethod = "indent"
 -- after https://github.com/neovim/neovim/pull/20750 is merged can uncomment
@@ -95,8 +98,8 @@ vim.opt.foldnestmax = 8
 vim.opt.foldtext = 'v:lua.Custom_fold_text()'
 vim.opt.fillchars = 'fold: '
 function Custom_fold_text()
-  local foldSize = 1 + vim.v.foldend - vim.v.foldstart
+	local foldSize = 1 + vim.v.foldend - vim.v.foldstart
 	local indent = vim.fn.indent(vim.v.foldstart)
 	local line = vim.fn.getline(vim.v.foldstart):gsub("^%s+", "")
-  return string.rep(" ", indent) .. line .. " ↓" .. foldSize
+	return string.rep(" ", indent) .. line .. " ↓" .. foldSize
 end
