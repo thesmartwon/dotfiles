@@ -4,7 +4,7 @@ vim.diagnostic.config({ virtual_text = false })
 require("mason").setup()
 require("mason-lspconfig").setup({
 	-- install based on later lsp configs
-	automatic_installation = true,
+	automatic_installation = false,
 	ui = {
 		icons = {
 			server_installed = "✓",
@@ -23,8 +23,6 @@ end
 cmp.setup({
 	snippet = {},
 	mapping = cmp.mapping.preset.insert({
-		['<C-x><C-o>'] = cmp.mapping.complete(),
-
 		['<Tab>'] = function(fallback)
 			if not cmp.select_next_item() then
 				if vim.bo.buftype ~= 'prompt' and has_words_before() then

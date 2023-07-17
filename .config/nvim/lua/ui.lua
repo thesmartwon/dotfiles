@@ -14,10 +14,8 @@ require("tokyonight").setup({
 })
 vim.cmd([[colorscheme tokyonight]])
 
-require("barbar").setup({
-	animation = false,
-	icons = {
-		filetype = { enabled = false }
-	},
-})
+-- require("barbar").setup({
+-- 	animation = false,
+-- 	icons.filetype.enabled = false,
+-- })
 
