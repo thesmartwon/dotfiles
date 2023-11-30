@@ -14,6 +14,7 @@ local commands = {
 		vim.cmd([[call setpos(".", getpos("'\""))]])
 		-- ALWAYS display tab as 2 spaces despite what filetype sets
 		vim.opt.tabstop = 2
+		vim.cmd('syntax match spaces /  / conceal cchar= ')
 	end},
 	-- Remove trailing whitespace
 	{{ "BufWritePre" }, function()
@@ -26,11 +27,3 @@ local commands = {
 for _, command in pairs(commands) do
 	vim.api.nvim_create_autocmd(command[1], { callback = command[2] })
 end
-
-vim.api.nvim_create_autocmd({"BufWinEnter", "FileType"}, {
-	pattern = { "zig", "cpp", "rust", "go" },
-	callback = function()
-		-- displaying 2 space tabs as 1 space
-		vim.cmd('syntax match spaces /  / conceal cchar= ')
-	end,
-})

@@ -43,6 +43,7 @@ keymaps.common = {
 			g = { '<cmd>Rg<CR>', 'Find files' },
 			x = { '<cmd>bd<CR>', 'Close buffer' },
 			v = { '<cmd>vsplit<CR>', 'Vertical split' },
+			q = { '<cmd>copen<CR>', 'Open quickfix' },
 			--f = { '<cmd>Telescope find_files<CR>', 'Find files' },
 			--a = { '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>', 'Find all' },
 			--g = { '<cmd>Telescope live_grep<CR>', 'Live grep' },
@@ -73,6 +74,8 @@ keymaps.common = {
 		},
 		['[d'] = { vim.diagnostic.goto_prev, 'Goto previous diagnostic' },
 		[']d'] = { vim.diagnostic.goto_next, 'Goto next diagnostic' },
+		[']n'] = { '<cmd>cprev<CR>', 'Goto previous quickfix item' },
+		['[n'] = { '<cmd>cnext<CR>', 'Goto next quickfix item' },
 		-- folding
 		['<A-j>'] = { 'zj', 'Goto next fold' },
 		['<A-k>'] = { 'zk', 'Goto previous fold' },

@@ -1,6 +1,7 @@
 local g = vim.g
 g.mapleader = ' '
 g.rust_recommended_style = 0
+g.zig_fmt_autosave = 0
 
 local o = vim.opt
 o.mouse = 'a'

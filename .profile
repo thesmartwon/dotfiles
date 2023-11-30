@@ -1,5 +1,5 @@
 . "$HOME/.cargo/env"
-export PATH="$HOME/.zvm/bin:$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.zvm/bin:$HOME/bin:$HOME/.local/bin:$HOME/scripts:$PATH"
 export NVM_DIR="$HOME/.nvm"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 export EDITOR=nvim
@@ -12,3 +12,6 @@ if type "dircolors" > /dev/null; then
 	eval "$(dircolors -b)"
 fi
 source $HOME/.secrets
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
