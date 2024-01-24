@@ -75,6 +75,7 @@ lsp.pyright.setup({ capabilities = caps })
 lsp.clangd.setup({ capabilities = caps })
 lsp.zls.setup({ capabilities = caps, settings = { enable_autofix = false } })
 lsp.gopls.setup({ capabilities = caps })
+lsp.cssls.setup({ capabilities = caps })
 
 vim.filetype.add({extension = {wgsl = "wgsl"}})
 lsp.wgsl_analyzer.setup({ capabilities = caps })
