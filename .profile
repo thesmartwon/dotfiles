@@ -1,5 +1,5 @@
 . "$HOME/.cargo/env"
-export PATH="$HOME/.zvm/bin:$HOME/bin:$HOME/.local/bin:$HOME/scripts:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/scripts:$PATH"
 export NVM_DIR="$HOME/.nvm"
 export ANDROID_SDK_ROOT="/opt/android-sdk"
 export EDITOR=nvim
