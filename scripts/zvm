@@ -23,8 +23,7 @@ if [[ $VERSION == "" ]]; then
 	ZLS_VERSION=$(echo $ZLS_INDEX | jq -r '.latest')
 	VERSION=$(echo $ZLS_INDEX | jq -r ".versions | .\"$ZLS_VERSION\" | .builtWithZigVersion")
 else
-	# For tagged releases
-	ZLS_VERSION=$VERSION
+	ZLS_VERSION=$(echo $ZLS_INDEX | jq -r ".versions | select(.builtWithZigVersion==\"$VERSION\")")
 fi
 
 TRIPLET="zig-$OS-$ARCH-$VERSION"
