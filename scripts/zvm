@@ -33,7 +33,7 @@ mkdir -p $INSTALL_DIR
 pushd $INSTALL_DIR
 
 if [ ! -d $VERSION ]; then
-	echo "downloading $ARCHIVE"
+	echo "Downloading Zig $VERSION"
 	curl "https://ziglang.org/builds/$ARCHIVE" --output $ARCHIVE
 	tar -xf $ARCHIVE
 	rm $ARCHIVE
@@ -48,10 +48,12 @@ if [[ $ZLS_VERSION != "" ]]; then
 	mkdir -p $INSTALL_DIR/zls
 	ZLS_INSTALL_PATH=$INSTALL_DIR/zls/$ZLS_VERSION
 	if [ ! -f $ZLS_INSTALL_PATH ]; then
-		echo "downloading ZLS $ZLS_VERSION"
+		echo "Downloading ZLS $ZLS_VERSION"
 		curl https://zigtools-releases.nyc3.digitaloceanspaces.com/zls/$ZLS_VERSION/$ARCH-$OS/zls > $ZLS_INSTALL_PATH
 		chmod +x $ZLS_INSTALL_PATH
 	fi
 
 	ln -sf $(readlink -f $ZLS_INSTALL_PATH) $BIN_DIR/zls
+else
+	echo "No ZLS built with Zig $VERSION, skipping"
 fi
