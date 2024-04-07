@@ -15,6 +15,11 @@ case "$OSTYPE" in
 esac
 
 ARCH=$(uname -m)
+case "$ARCH" in
+  arm64)         ARCH="aarch64" ;;
+  x86|x86_64)    ;;
+  *)             echo "unknown ARCH: $ARCH" && exit 1 ;;
+esac
 
 ZLS_INDEX=$(curl https://zigtools-releases.nyc3.digitaloceanspaces.com/zls/index.json)
 VERSION=$1

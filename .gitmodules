@@ -46,3 +46,6 @@
 	path = .local/share/nvim/site/pack/plugins/start/cmp-path
 	url = https://github.com/hrsh7th/cmp-path
 	branch = main
+[submodule ".local/share/nvim/site/pack/plugins/start/fzf"]
+	path = .local/share/nvim/site/pack/plugins/start/fzf
+	url = https://github.com/junegunn/fzf
