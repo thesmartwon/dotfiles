@@ -3,7 +3,6 @@
 .config/*
 !.config/alacritty
 !.config/compton.conf
-!.config/coc
 !.config/i3
 !.config/nvim
 !.config/nvim/lua
