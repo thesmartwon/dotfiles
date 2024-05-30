@@ -1,5 +1,5 @@
 if [ -f $HOME/.cargo/env ]; then
-	$HOME/.cargo/env
+	source $HOME/.cargo/env
 fi
 NCPU=$(nproc 2>/dev/null || sysctl -n hw.logicalcpu)
 export PATH="$HOME/bin:$HOME/.local/bin:$HOME/scripts:$PATH"
