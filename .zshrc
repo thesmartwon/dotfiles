@@ -149,6 +149,7 @@ alias gp="git push"
 alias gl="git pull"
 alias gf="git fetch"
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
+alias hd="hexdump"
 
 if [[ -z $DISPLAY ]] && [[ $(tty) == "/dev/tty1" ]]
 then

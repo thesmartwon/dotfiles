@@ -14,7 +14,8 @@ o.backspace = 'indent,eol,start'
 o.updatetime = 500
 
 -- display tab as 2 spaces
-o.smartindent = true
+o.autoindent = true
+o.smarttab = true
 o.tabstop = 2
 o.softtabstop = 2
 o.shiftwidth = 2
