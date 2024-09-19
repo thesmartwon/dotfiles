@@ -33,8 +33,6 @@ bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^?' backward-delete-char
 bindkey '^H' backward-kill-word
-# I trigger this by accident cuz i like spamming escape
-bindkey -r "^["
 # Use ctrl+arrows to skip words
 bindkey '^[[1;5D' backward-word '^[[1;5C' forward-word
 # Nice history search
