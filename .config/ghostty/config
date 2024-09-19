@@ -1,6 +1,6 @@
 font-family = SourceCodePro
 font-size = 14
-background-opacity = 0.95
+background-opacity = 0.9
 
 background = #151519
 foreground = #c0caf5
@@ -42,3 +42,4 @@ working-directory = inherit
 keybind = super+enter=new_window
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
+working-directory = inherit
