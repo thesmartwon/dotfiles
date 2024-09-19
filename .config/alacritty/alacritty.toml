@@ -48,5 +48,15 @@ action = "ScrollPageDown"
 key = "PageDown"
 mods = "Shift"
 
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Super"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Super"
+
 [window]
 opacity = 0.9

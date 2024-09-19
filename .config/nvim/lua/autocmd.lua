@@ -17,11 +17,11 @@ local commands = {
 		vim.cmd('syntax match spaces /  / conceal cchar= ')
 	end},
 	-- Remove trailing whitespace
-	{{ "BufWritePre" }, function()
-		local save_cursor = vim.fn.getpos(".")
-		vim.cmd([[%s/\s\+$//e]])
-		vim.fn.setpos(".", save_cursor)
-	end},
+	-- {{ "BufWritePre" }, function()
+	-- 	local save_cursor = vim.fn.getpos(".")
+	-- 	vim.cmd([[%s/\s\+$//e]])
+	-- 	vim.fn.setpos(".", save_cursor)
+	-- end},
 }
 
 for _, command in pairs(commands) do
