@@ -1,3 +1,9 @@
+-- Change background of color strings
+require('colorizer').setup()
+
+-- Rely on Treesitter + LSP instead
+vim.cmd('syntax off')
+
 require("tokyonight").setup({
 	style = "night",
 	transparent = true,
@@ -6,16 +12,32 @@ require("tokyonight").setup({
 		colors.bg = '#151519'
 		colors.bg_dark = '#101012'
 	end,
-	on_highlights = function(highlights, colors)
-		-- https://gist.github.com/Emille1723/1134f2ff116f2279a69aa51456065b0d
-		-- https://github.com/folke/tokyonight.nvim/blob/main/extras/lua/tokyonight_night.lua
-		highlights.cStructure = highlights.Identifier
-	end,
 })
-vim.cmd([[colorscheme tokyonight]])
+vim.cmd.colorscheme('tokyonight')
 
--- require("barbar").setup({
--- 	animation = false,
--- 	icons.filetype.enabled = false,
--- })
-
+local actions = require("telescope.actions")
+local sorters = require("telescope.sorters")
+require('telescope').setup({
+	defaults = {
+		winblend = 10,
+		mappings = {
+			i = {
+				["<esc>"] = actions.close,
+			}
+		},
+		file_sorter = sorters.get_fzy_sorter,
+		generic_sorter = sorters.get_fzy_sorter,
+		preview = false,
+		layout_config = {
+			anchor = "N",
+		},
+	},
+	pickers = {
+		find_files = {
+			theme = "dropdown",
+		},
+		live_grep = {
+			theme = "dropdown",
+		},
+	},
+})

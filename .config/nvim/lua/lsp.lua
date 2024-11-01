@@ -50,6 +50,19 @@ cmp.setup({
 	)
 })
 
+-- Treesitter is a nice in-between regex highlighting and LSP.
+require("nvim-treesitter.configs").setup({
+	modules = {},
+	auto_install = true,
+	ensure_installed = { "lua", "rust", "typescript", "julia", "python", "cpp", "c", "zig" },
+	ignore_install = {},
+	sync_install = false,
+	highlight = {
+		enable = true,
+	},
+	indent = { enable = true }
+})
+
 local lsp = require("lspconfig")
 local caps = require("cmp_nvim_lsp").default_capabilities()
 lsp.lua_ls.setup({
@@ -69,40 +82,29 @@ lsp.lua_ls.setup({
 	}
 })
 lsp.rust_analyzer.setup({ capabilities = caps })
-lsp.tsserver.setup({ capabilities = caps })
 lsp.julials.setup({ capabilities = caps })
 lsp.pyright.setup({ capabilities = caps })
 lsp.clangd.setup({ capabilities = caps })
 lsp.zls.setup({ capabilities = caps, settings = { enable_autofix = false } })
 lsp.gopls.setup({ capabilities = caps })
 lsp.cssls.setup({ capabilities = caps })
+lsp.denols.setup({
+	capabilities = caps,
+	root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc"),
+})
+lsp.ts_ls.setup({
+	capabilities = caps,
+	root_dir = lsp.util.root_pattern("package.json"),
+	single_file_support = false,
+})
 
 vim.filetype.add({extension = {wgsl = "wgsl"}})
 lsp.wgsl_analyzer.setup({ capabilities = caps })
 
--- treesitter
--- local treesitter = require("nvim-treesitter.configs")
--- treesitter.setup({
---	auto_install = true,
---	ensure_install = { "lua", "rust", "typescript", "julia", "python", "cpp", "c", "zig" },
---	sync_install = false,
---	highlight = {
---		enable = false,
---	},
---	indent = { enable = false }
--- })
-vim.wo.foldmethod = "indent"
--- after https://github.com/neovim/neovim/pull/20750 is merged can uncomment
--- vim.wo.foldmethod = "expr"
--- vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevelstart = 1
 vim.opt.foldminlines = 3
 vim.opt.foldnestmax = 8
-vim.opt.foldtext = 'v:lua.Custom_fold_text()'
+vim.opt.foldtext = ''
 vim.opt.fillchars = 'fold: '
-function Custom_fold_text()
-	local foldSize = 1 + vim.v.foldend - vim.v.foldstart
-	local indent = vim.fn.indent(vim.v.foldstart)
-	local line = vim.fn.getline(vim.v.foldstart):gsub("^%s+", "")
-	return string.rep(" ", indent) .. line .. " ↓" .. foldSize
-end
