@@ -97,6 +97,7 @@ lsp.ts_ls.setup({
 	root_dir = lsp.util.root_pattern("package.json"),
 	single_file_support = false,
 })
+lsp.svelte.setup({ capabilities = caps })
 
 vim.filetype.add({extension = {wgsl = "wgsl"}})
 lsp.wgsl_analyzer.setup({ capabilities = caps })

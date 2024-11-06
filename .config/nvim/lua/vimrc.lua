@@ -45,6 +45,10 @@ o.statusline = '%<%f %h%m%r%=%{"[".(&fenc==""?&enc:&fenc).((exists("+bomb") && &
 o.ignorecase = true
 o.smartcase = true
 
+-- be nicer to inotify
+o.backup = false
+o.writebackup = false
+
 local disabled_plugins = {
 	'2html_plugin',
 	'getscript',

@@ -1,19 +1,15 @@
-  -- Open and go one line down
+-- Open and go one line down
 local function open_closed_fold()
-	if vim.fn.foldclosed('.') ~= -1 then
-		-- Dunno why `zo` sometimes doesn't work...
-		for _=1,20 do
-			vim.cmd('norm! zo')
-		end
-	end
-	vim.cmd('norm! \r')
-  for _, win in pairs(vim.fn.getwininfo()) do
-    if win["quickfix"] == 1 then
+	for _, win in pairs(vim.fn.getwininfo()) do
+		if win["quickfix"] == 1 then
+			vim.cmd('norm! \r')
 			vim.cmd("cclose")
 			vim.cmd("lclose")
-			break
-    end
-  end
+			return
+		end
+	end
+	vim.cmd('norm! zo')
+	vim.cmd('norm! \r')
 end
 
 local telescope = require('telescope.builtin')
@@ -21,19 +17,19 @@ local telescope = require('telescope.builtin')
 local keymaps = {
 	n = {
 		['<Space>'] = '<Nop>', -- Why does this move one char right anyways?
-		[';'] = ':', -- I never use ; to goto next instance in line, but I save and quit files a lot.
-		['<C-f>'] = ':%s/', -- Like other editors
+		[';'] = ':',         -- I never use ; to goto next instance in line, but I save and quit files a lot.
+		['<C-f>'] = ':%s/',  -- Like other editors
 		['<C-h>'] = '<C-w>h',
 		['<C-j>'] = '<C-w>j',
 		['<C-k>'] = '<C-w>k',
 		['<C-l>'] = '<C-w>l',
-		['<Tab>'] = '<cmd>bn<CR>', -- Next buffer
-		['<S-Tab>'] = '<cmd>bp<CR>', -- Previous buffer
+		['<Tab>'] = '<cmd>bn<CR>',           -- Next buffer
+		['<S-Tab>'] = '<cmd>bp<CR>',         -- Previous buffer
 		['<leader>e'] = '<cmd>e $MYVIMRC<CR>', -- Edit nvim config
 		['<leader>f'] = telescope.find_files,
 		['<leader>g'] = telescope.live_grep,
 		['<leader>t'] = telescope.buffers,
-		['<leader>x'] = '<cmd>bd<CR>', -- Close buffer
+		['<leader>x'] = '<cmd>bd<CR>',  -- Close buffer
 		['<leader>v'] = '<cmd>vsplit<CR>',
 		['<leader>q'] = '<cmd>copen<CR>', -- Open quickfix
 		['<leader>rr'] = vim.lsp.buf.references,
@@ -49,15 +45,15 @@ local keymaps = {
 		[']d'] = vim.diagnostic.goto_next,
 		[']n'] = '<cmd>cprev<CR>',
 		['[n'] = '<cmd>cnext<CR>',
-		['<ESC>'] = '<cmd>noh | echon<CR>', -- No highlight 
+		['<ESC>'] = '<cmd>noh | echon<CR>', -- No highlight
 		-- folding
-		['<A-j>'] = 'zj', -- Goto next fold
-		['<A-k>'] = 'zk', -- Goto previous fold
+		['<A-j>'] = 'zj',                 -- Goto next fold
+		['<A-k>'] = 'zk',                 -- Goto previous fold
 		['<CR>'] = open_closed_fold,
-		['z{'] = 'zm', -- Increase folding
-		['z}'] = 'zr',  -- Reduce folding
-		['g{'] = 'zM', -- Fold all
-		['g}'] = 'zR', -- Undold all
+		['z{'] = 'zm',                    -- Increase folding
+		['z}'] = 'zr',                    -- Reduce folding
+		['g{'] = 'zM',                    -- Fold all
+		['g}'] = 'zR',                    -- Undold all
 	},
 	i = {
 		['<C-Space>'] = '<C-X><C-O>', -- Omnifunc
