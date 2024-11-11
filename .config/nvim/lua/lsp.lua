@@ -44,9 +44,9 @@ cmp.setup({
 		end,
 	}),
 	sources = cmp.config.sources(
-		{{ name = 'nvim_lsp' }},
-		{{ name = 'buffer' }},
-		{{ name = 'path' }}
+		{ { name = 'nvim_lsp' } },
+		{ { name = 'buffer' } },
+		{ { name = 'path' } }
 	)
 })
 
@@ -54,7 +54,7 @@ cmp.setup({
 require("nvim-treesitter.configs").setup({
 	modules = {},
 	auto_install = true,
-	ensure_installed = { "lua", "rust", "typescript", "julia", "python", "cpp", "c", "zig" },
+	ensure_installed = {},
 	ignore_install = {},
 	sync_install = false,
 	highlight = {
@@ -70,7 +70,7 @@ lsp.lua_ls.setup({
 	settings = {
 		Lua = {
 			diagnostics = {
-				globals = {'vim'}
+				globals = { 'vim' }
 			},
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true),
@@ -87,19 +87,18 @@ lsp.pyright.setup({ capabilities = caps })
 lsp.clangd.setup({ capabilities = caps })
 lsp.zls.setup({ capabilities = caps, settings = { enable_autofix = false } })
 lsp.gopls.setup({ capabilities = caps })
-lsp.cssls.setup({ capabilities = caps })
+lsp.tailwindcss.setup({ capabilities = caps })
 lsp.denols.setup({
 	capabilities = caps,
 	root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc"),
 })
-lsp.ts_ls.setup({
-	capabilities = caps,
-	root_dir = lsp.util.root_pattern("package.json"),
-	single_file_support = false,
-})
-lsp.svelte.setup({ capabilities = caps })
+-- lsp.ts_ls.setup({
+-- 	capabilities = caps,
+-- 	root_dir = lsp.util.root_pattern("package.json"),
+-- 	single_file_support = false,
+-- })
 
-vim.filetype.add({extension = {wgsl = "wgsl"}})
+vim.filetype.add({ extension = { wgsl = "wgsl" } })
 lsp.wgsl_analyzer.setup({ capabilities = caps })
 
 vim.wo.foldmethod = 'expr'
