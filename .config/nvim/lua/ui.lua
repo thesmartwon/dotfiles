@@ -17,11 +17,6 @@ vim.cmd.colorscheme('tokyonight')
 
 local actions = require("telescope.actions")
 local sorters = require("telescope.sorters")
-local layout_config = {
-	width = function(_, max_columns, _)
-		return math.min(max_columns, 120)
-	end,
-}
 require('telescope').setup({
 	defaults = {
 		winblend = 10,
@@ -39,11 +34,23 @@ require('telescope').setup({
 	pickers = {
 		find_files = {
 			theme = "dropdown",
-			layout_config = layout_config,
+			layout_config = {
+				width = function(_, max_columns, _)
+					return math.min(max_columns, 120)
+				end,
+				height = function(_, max_rows, _)
+					return max_rows;
+				end,
+			},
+			previewer = false,
 		},
 		live_grep = {
 			theme = "dropdown",
-			layout_config = layout_config,
+			layout_config = {
+				width = function(_, max_columns, _)
+					return math.min(max_columns, 120)
+				end,
+			},
 		},
 	},
 })

@@ -47,7 +47,10 @@ o.smartcase = true
 
 -- be nicer to inotify
 o.backup = false
+o.backupcopy = "yes"
 o.writebackup = false
+
+o.mouse = ''
 
 local disabled_plugins = {
 	'2html_plugin',
