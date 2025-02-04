@@ -45,9 +45,8 @@ o.statusline = '%<%f %h%m%r%=%{"[".(&fenc==""?&enc:&fenc).((exists("+bomb") && &
 o.ignorecase = true
 o.smartcase = true
 
--- be nicer to inotify
+-- workaround rolldown bug
 o.backup = false
-o.backupcopy = "yes"
 o.writebackup = false
 
 o.mouse = ''

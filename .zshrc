@@ -151,6 +151,7 @@ alias hd="hexdump"
 
 if [[ -z $DISPLAY ]] && [[ $(tty) == "/dev/tty1" ]]
 then
-	#sway --unsupported-gpu
-  startx
+	XDG_CURRENT_DESKTOP=sway sway
+	# Hyprland
+	# startx
 fi

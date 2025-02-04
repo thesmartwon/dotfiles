@@ -4,7 +4,7 @@ vim.diagnostic.config({ virtual_text = false })
 require("mason").setup()
 require("mason-lspconfig").setup({
 	-- install based on later lsp configs
-	automatic_installation = false,
+	automatic_installation = true,
 	ui = {
 		icons = {
 			server_installed = "✓",
@@ -88,15 +88,12 @@ lsp.clangd.setup({ capabilities = caps })
 lsp.zls.setup({ capabilities = caps, settings = { enable_autofix = false } })
 lsp.gopls.setup({ capabilities = caps })
 lsp.tailwindcss.setup({ capabilities = caps })
-lsp.denols.setup({
+lsp.ts_ls.setup({
 	capabilities = caps,
-	root_dir = lsp.util.root_pattern("deno.json", "deno.jsonc"),
+	root_dir = lsp.util.root_pattern("package.json"),
+	single_file_support = false,
 })
--- lsp.ts_ls.setup({
--- 	capabilities = caps,
--- 	root_dir = lsp.util.root_pattern("package.json"),
--- 	single_file_support = false,
--- })
+lsp.biome.setup({ capabilities = caps })
 
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
 lsp.wgsl_analyzer.setup({ capabilities = caps })
