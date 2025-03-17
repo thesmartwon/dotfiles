@@ -31,8 +31,7 @@ palette = 15=#fbf1c7
 
 window-padding-x = 0
 window-padding-y = 0
-window-decoration = true
-gtk-titlebar = false
+window-decoration = server
 confirm-close-surface = false
 
 adw-toolbar-style = flat
@@ -43,5 +42,4 @@ keybind = super+enter=new_window
 keybind = super+n=new_window
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
-working-directory = inherit
 clipboard-paste-protection = false

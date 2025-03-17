@@ -8,7 +8,7 @@ local function open_closed_fold()
 			return
 		end
 	end
-	vim.cmd('norm! zo')
+	vim.cmd('silent! exe "norm! zo"')
 	vim.cmd('norm! \r')
 end
 

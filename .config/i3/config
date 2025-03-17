@@ -165,15 +165,15 @@ bar {
 exec --no-startup-id xcompmgr -C &
 
 # Monitors
-workspace $ws1  output "DP-0"
-workspace $ws2  output "DP-0"
-workspace $ws3  output "DP-0"
-workspace $ws4  output "DP-4"
-workspace $ws5  output "DP-4"
-workspace $ws6  output "DP-4"
-workspace $ws7  output "DP-4"
-workspace $ws8  output "DP-2"
-workspace $ws9  output "DP-2"
-workspace $ws10 output "DP-2"
+workspace $ws1  output "DisplayPort-2"
+workspace $ws2  output "DisplayPort-2"
+workspace $ws3  output "DisplayPort-2"
+workspace $ws4  output "DisplayPort-0"
+workspace $ws5  output "DisplayPort-0"
+workspace $ws6  output "DisplayPort-0"
+workspace $ws7  output "DisplayPort-0"
+workspace $ws8  output "DisplayPort-1"
+workspace $ws9  output "DisplayPort-1"
+workspace $ws10 output "DisplayPort-1"
 
 for_window [class="Yad"] floating enable
