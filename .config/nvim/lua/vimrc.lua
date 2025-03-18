@@ -49,6 +49,9 @@ o.smartcase = true
 o.backup = false
 o.writebackup = false
 
+-- Do not conceal links in MD files
+o.conceallevel = 0
+
 o.mouse = ''
 
 local disabled_plugins = {

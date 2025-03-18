@@ -15,7 +15,6 @@ if type "dircolors" > /dev/null; then
 	eval "$(dircolors -b)"
 fi
 source $HOME/.secrets
-# export PYENV_ROOT="$HOME/.pyenv"
-# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+[ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+[ -d "$HOME/.pyenv" ] && eval "$(pyenv init - zsh)"

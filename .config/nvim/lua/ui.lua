@@ -1,4 +1,4 @@
--- Change background of color strings
+-- Preview colors like `#fff`
 require('colorizer').setup()
 
 -- Rely on Treesitter + LSP instead
@@ -8,10 +8,9 @@ require("tokyonight").setup({
 	style = "night",
 	transparent = true,
 	dim_inactive = true,
-	on_colors = function(colors)
-		colors.bg = '#151519'
-		colors.bg_dark = '#101012'
-	end,
+	on_highlights = function(highlights, colors)
+		highlights.ColorColumn = { bg = colors.bg_dark }
+	end
 })
 vim.cmd.colorscheme('tokyonight')
 
