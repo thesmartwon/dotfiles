@@ -39,7 +39,7 @@ pushd $INSTALL_DIR
 
 if [ ! -d $VERSION ]; then
 	echo "Downloading Zig $VERSION"
-	curl "https://ziglang.org/builds/$ARCHIVE" --output $ARCHIVE
+	curl "https://ziglang.org/download/$VERSION/$ARCHIVE" --output $ARCHIVE
 	tar -xf $ARCHIVE
 	rm $ARCHIVE
 

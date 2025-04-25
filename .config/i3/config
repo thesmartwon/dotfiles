@@ -119,6 +119,7 @@ bindsym $mod+Shift+e exec $exitcmd
 
 # screenshot
 bindsym $mod+Print exec "flameshot gui"
+bindsym $mod+Pause exec "flameshot gui"
 bindsym $mod+Shift+Print exec "peek gui"
 
 # resize window (you can also use the mouse for that)

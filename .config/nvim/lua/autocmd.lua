@@ -14,7 +14,7 @@ local commands = {
 		vim.cmd([[call setpos(".", getpos("'\""))]])
 		-- ALWAYS display tab as 2 spaces despite what filetype sets
 		vim.opt.tabstop = 2
-		vim.cmd('syntax match spaces /  / conceal cchar= ')
+		-- vim.cmd('syntax match spaces /  / conceal cchar= ')
 	end},
 	-- Remove trailing whitespace
 	-- {{ "BufWritePre" }, function()
