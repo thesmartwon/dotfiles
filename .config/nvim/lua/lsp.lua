@@ -92,8 +92,19 @@ lsp.ts_ls.setup({
 	capabilities = caps,
 	root_dir = lsp.util.root_pattern("package.json"),
 	single_file_support = false,
+	on_attach = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+	end,
 })
 lsp.biome.setup({ capabilities = caps })
+require("conform").setup({
+	formatters_by_ft = {
+		javascript = { "biome", "biome-organize-imports" },
+		javascriptreact = { "biome", "biome-organize-imports" },
+		typescript = { "biome", "biome-organize-imports" },
+		typescriptreact = { "biome", "biome-organize-imports" },
+	},
+})
 
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
 lsp.wgsl_analyzer.setup({ capabilities = caps })

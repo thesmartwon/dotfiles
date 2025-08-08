@@ -13,6 +13,7 @@ local function open_closed_fold()
 end
 
 local telescope = require('telescope.builtin')
+local conform = require('conform')
 
 local keymaps = {
 	n = {
@@ -34,7 +35,7 @@ local keymaps = {
 		['<leader>q'] = '<cmd>copen<CR>', -- Open quickfix
 		['<leader>rr'] = vim.lsp.buf.references,
 		['<leader>rf'] = vim.lsp.buf.code_action,
-		['<leader>m'] = vim.lsp.buf.format,
+		['<leader>m'] = conform.format,
 		['<leader>rn'] = vim.lsp.buf.rename, -- Rename symbol
 		['<leader>D'] = vim.lsp.buf.declaration,
 		['<leader>d'] = vim.lsp.buf.definition,
