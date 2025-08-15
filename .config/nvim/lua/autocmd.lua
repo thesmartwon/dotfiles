@@ -1,6 +1,6 @@
 local commands = {
 	-- Highlight yank
-	{"TextYankPost", function() vim.highlight.on_yank() end},
+	{"TextYankPost", function() vim.hl.on_yank() end},
 	-- Show diagnostic on hover
 	{"CursorHold", function() vim.diagnostic.open_float({ scope = "line", focusable = false }) end},
 	-- Clear command line

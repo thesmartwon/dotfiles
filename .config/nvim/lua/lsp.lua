@@ -3,8 +3,22 @@ vim.diagnostic.config({ virtual_text = false })
 -- vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 require("mason").setup()
 require("mason-lspconfig").setup({
-	-- install based on later lsp configs
-	automatic_installation = true,
+	ensure_installed = {
+		-- neovim config
+		"lua_ls",
+		-- c
+		"clangd",
+		-- web
+		"ts_ls",
+		"biome",
+		"tailwindcss",
+		"cssls",
+		-- config
+		"yamlls",
+		-- rest
+		"rust_analyzer",
+		"zls",
+	},
 	ui = {
 		icons = {
 			server_installed = "✓",
@@ -15,31 +29,21 @@ require("mason-lspconfig").setup({
 })
 
 local cmp = require("cmp")
-local has_words_before = function()
-	unpack = unpack or table.unpack
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-end
 cmp.setup({
 	snippet = {},
 	mapping = cmp.mapping.preset.insert({
 		['<Tab>'] = function(fallback)
-			if not cmp.select_next_item() then
-				if vim.bo.buftype ~= 'prompt' and has_words_before() then
-					cmp.complete()
-				else
-					fallback()
-				end
+			if cmp.visible() then
+				cmp.select_next_item()
+			else
+				fallback()
 			end
 		end,
-
 		['<S-Tab>'] = function(fallback)
-			if not cmp.select_prev_item() then
-				if vim.bo.buftype ~= 'prompt' and has_words_before() then
-					cmp.complete()
-				else
-					fallback()
-				end
+			if cmp.visible() then
+				cmp.select_prev_item()
+			else
+				fallback()
 			end
 		end,
 	}),
@@ -63,10 +67,8 @@ require("nvim-treesitter.configs").setup({
 	indent = { enable = true }
 })
 
-local lsp = require("lspconfig")
-local caps = require("cmp_nvim_lsp").default_capabilities()
-lsp.lua_ls.setup({
-	capabilites = caps,
+-- mason by default enables all installed LSPs
+vim.lsp.config.lua_ls = {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -80,23 +82,15 @@ lsp.lua_ls.setup({
 			},
 		}
 	}
-})
-lsp.rust_analyzer.setup({ capabilities = caps })
-lsp.julials.setup({ capabilities = caps })
-lsp.pyright.setup({ capabilities = caps })
-lsp.clangd.setup({ capabilities = caps })
-lsp.zls.setup({ capabilities = caps, settings = { enable_autofix = false } })
-lsp.gopls.setup({ capabilities = caps })
-lsp.tailwindcss.setup({ capabilities = caps })
-lsp.ts_ls.setup({
-	capabilities = caps,
-	root_dir = lsp.util.root_pattern("package.json"),
-	single_file_support = false,
+}
+vim.lsp.config.zls = { settings = { enable_autofix = false } }
+vim.lsp.config.ts_ls = {
 	on_attach = function(client)
 		client.server_capabilities.documentFormattingProvider = false
 	end,
-})
-lsp.biome.setup({ capabilities = caps })
+}
+vim.filetype.add({ extension = { wgsl = "wgsl" } })
+
 require("conform").setup({
 	formatters_by_ft = {
 		javascript = { "biome", "biome-organize-imports" },
@@ -106,9 +100,7 @@ require("conform").setup({
 	},
 })
 
-vim.filetype.add({ extension = { wgsl = "wgsl" } })
-lsp.wgsl_analyzer.setup({ capabilities = caps })
-
+-- folding
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevelstart = 1
