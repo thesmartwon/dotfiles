@@ -14,18 +14,6 @@
 	path = .local/share/nvim/site/pack/plugins/start/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig
 	branch = master
-[submodule ".local/share/nvim/site/pack/plugins/start/nvim-cmp"]
-	path = .local/share/nvim/site/pack/plugins/start/nvim-cmp
-	url = https://github.com/hrsh7th/nvim-cmp
-	branch = main
-[submodule ".local/share/nvim/site/pack/plugins/start/cmp-buffer"]
-	path = .local/share/nvim/site/pack/plugins/start/cmp-buffer
-	url = https://github.com/hrsh7th/cmp-buffer
-	branch = main
-[submodule ".local/share/nvim/site/pack/plugins/start/cmp-path"]
-	path = .local/share/nvim/site/pack/plugins/start/cmp-path
-	url = https://github.com/hrsh7th/cmp-path
-	branch = main
 [submodule ".local/share/nvim/site/pack/plugins/start/nvim-treesitter"]
 	path = .local/share/nvim/site/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
@@ -44,3 +32,6 @@
 [submodule ".local/share/nvim/site/pack/plugins/start/conform.nvim"]
 	path = .local/share/nvim/site/pack/plugins/start/conform.nvim
 	url = https://github.com/stevearc/conform.nvim
+[submodule ".local/share/nvim/site/pack/plugins/start/blink.cmp"]
+	path = .local/share/nvim/site/pack/plugins/start/blink.cmp
+	url = https://github.com/Saghen/blink.cmp

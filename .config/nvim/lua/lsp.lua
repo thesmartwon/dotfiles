@@ -28,32 +28,6 @@ require("mason-lspconfig").setup({
 	}
 })
 
-local cmp = require("cmp")
-cmp.setup({
-	snippet = {},
-	mapping = cmp.mapping.preset.insert({
-		['<Tab>'] = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			else
-				fallback()
-			end
-		end,
-		['<S-Tab>'] = function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			else
-				fallback()
-			end
-		end,
-	}),
-	sources = cmp.config.sources(
-		{ { name = 'nvim_lsp' } },
-		{ { name = 'buffer' } },
-		{ { name = 'path' } }
-	)
-})
-
 -- Treesitter is a nice in-between regex highlighting and LSP.
 require("nvim-treesitter.configs").setup({
 	modules = {},
@@ -66,6 +40,15 @@ require("nvim-treesitter.configs").setup({
 	},
 	indent = { enable = true }
 })
+
+-- folding
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevelstart = 1
+vim.opt.foldminlines = 3
+vim.opt.foldnestmax = 8
+vim.opt.foldtext = ''
+vim.opt.fillchars = 'fold: '
 
 -- mason by default enables all installed LSPs
 vim.lsp.config.lua_ls = {
@@ -100,11 +83,40 @@ require("conform").setup({
 	},
 })
 
--- folding
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-vim.opt.foldlevelstart = 1
-vim.opt.foldminlines = 3
-vim.opt.foldnestmax = 8
-vim.opt.foldtext = ''
-vim.opt.fillchars = 'fold: '
+-- completion
+require("blink.cmp").setup({
+	keymap = {
+		preset = "none",
+
+		['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+		['<Tab>'] = { 'select_next', 'fallback', },
+		['<S-Tab>'] = { 'select_prev', 'fallback' },
+		['<Up>'] = { 'select_prev', 'fallback' },
+		['<Down>'] = { 'select_next', 'fallback' },
+	},
+	completion = {
+		list = {
+			selection = { preselect = false, auto_insert = true }
+		},
+	},
+	fuzzy = {
+		implementation = "prefer_rust",
+		prebuilt_binaries = {
+			force_version = "1.6.0",
+		},
+	},
+	sources = {
+		providers = {
+			lsp = {
+				-- exclude keywords
+				name = 'LSP',
+				module = 'blink.cmp.sources.lsp',
+				transform_items = function(_, items)
+					return vim.tbl_filter(function(item)
+						return item.kind ~= require('blink.cmp.types').CompletionItemKind.Keyword
+					end, items)
+				end,
+			},
+		},
+	}
+})
