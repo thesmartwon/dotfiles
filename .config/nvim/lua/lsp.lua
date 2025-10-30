@@ -12,7 +12,6 @@ require("mason-lspconfig").setup({
 		"ts_ls",
 		"biome",
 		"tailwindcss",
-		"cssls",
 		-- config
 		"yamlls",
 		-- rest
@@ -57,9 +56,9 @@ vim.lsp.config.lua_ls = {
 			diagnostics = {
 				globals = { 'vim' }
 			},
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
+			-- workspace = {
+			-- 	library = vim.api.nvim_get_runtime_file("", true),
+			-- },
 			telemetry = {
 				enable = false
 			},
@@ -109,14 +108,8 @@ require("blink.cmp").setup({
 	sources = {
 		providers = {
 			lsp = {
-				-- exclude keywords
 				name = 'LSP',
 				module = 'blink.cmp.sources.lsp',
-				transform_items = function(_, items)
-					return vim.tbl_filter(function(item)
-						return item.kind ~= require('blink.cmp.types').CompletionItemKind.Keyword
-					end, items)
-				end,
 			},
 		},
 	}

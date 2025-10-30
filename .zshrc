@@ -155,3 +155,6 @@ then
 	Hyprland
 	# startx
 fi
+
+# bun completions
+[ -s "/Users/zack/.bun/_bun" ] && source "/Users/zack/.bun/_bun"
