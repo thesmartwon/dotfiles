@@ -152,7 +152,7 @@ alias hd="hexdump"
 if [[ -z $DISPLAY ]] && [[ $(tty) == "/dev/tty1" ]]
 then
 	# XDG_CURRENT_DESKTOP=sway sway
-	Hyprland
+	start-hyprland
 	# startx
 fi
 

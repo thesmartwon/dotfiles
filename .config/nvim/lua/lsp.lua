@@ -11,7 +11,9 @@ require("mason-lspconfig").setup({
 		-- web
 		"ts_ls",
 		"biome",
-		"tailwindcss",
+		"mdx_analyzer",
+		"cssls",
+		"html",
 		-- config
 		"yamlls",
 		-- rest
@@ -71,11 +73,23 @@ vim.lsp.config.ts_ls = {
 		client.server_capabilities.documentFormattingProvider = false
 	end,
 }
+vim.lsp.config.cssls = {
+	-- https://raw.githubusercontent.com/microsoft/vscode/main/extensions/css-language-features/package.json
+	settings = {
+		css = {
+			lint = {
+				unknownAtRules = "ignore"
+			}
+		}
+	}
+}
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
+vim.filetype.add({ extension = { mdx = "mdx" } })
 
 require("conform").setup({
 	formatters_by_ft = {
 		javascript = { "biome", "biome-organize-imports" },
+		css = { "biome" },
 		javascriptreact = { "biome", "biome-organize-imports" },
 		typescript = { "biome", "biome-organize-imports" },
 		typescriptreact = { "biome", "biome-organize-imports" },
