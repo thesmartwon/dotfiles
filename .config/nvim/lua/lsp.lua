@@ -68,10 +68,26 @@ vim.lsp.config.lua_ls = {
 	}
 }
 vim.lsp.config.zls = { settings = { enable_autofix = false } }
+vim.lsp.config.biome = {
+	filetypes = { "html", "css", "typescript", "javascript", "tsx", "jsx" }
+}
+
+-- local vue_ls_path = vim.fn.expand("$MASON/packages/vue-language-server")
+-- local vue_plugin_path = vue_ls_path .. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 vim.lsp.config.ts_ls = {
 	on_attach = function(client)
 		client.server_capabilities.documentFormattingProvider = false
 	end,
+	-- init_options = {
+	-- 	plugins = {
+	-- 		{
+	-- 			name = "@vue/typescript-plugin",
+	-- 			location = vue_plugin_path,
+	-- 			languages = { "vue" },
+	-- 		},
+	-- 	},
+	-- },
+	-- filetypes = { "typescript", "javascript", "vue" },
 }
 vim.lsp.config.cssls = {
 	-- https://raw.githubusercontent.com/microsoft/vscode/main/extensions/css-language-features/package.json
@@ -85,6 +101,7 @@ vim.lsp.config.cssls = {
 }
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
 vim.filetype.add({ extension = { mdx = "mdx" } })
+vim.filetype.add({ extension = { webc = "html" } })
 
 require("conform").setup({
 	formatters_by_ft = {
