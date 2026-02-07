@@ -35,3 +35,6 @@
 [submodule ".local/share/nvim/site/pack/plugins/start/blink.cmp"]
 	path = .local/share/nvim/site/pack/plugins/start/blink.cmp
 	url = https://github.com/Saghen/blink.cmp
+[submodule ".local/share/nvim/site/pack/plugins/start/otter.nvim"]
+	path = .local/share/nvim/site/pack/plugins/start/otter.nvim
+	url = https://github.com/jmbuhr/otter.nvim

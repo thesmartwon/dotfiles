@@ -8,11 +8,7 @@ export JULIA_NUM_THREADS=$NCPU
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g !'{.git/*,node_modules/*,target/*,extern/*}'"
 export MANPATH="/usr/local/man:$MANPATH"
 export MAKEFLAGS="-j$(($NCPU / 2))"
-BUN_INSTALL="$HOME/.bun"
-if [ -s "$BUN_INSTALL" ]; then
-	source "$BUN_INSTALL/_bun"
-	export PATH="$BUN_INSTALL/bin:$PATH"
-fi
+export PRETTIERD_DEFAULT_CONFIG="$HOME/src/nerd-bible/prettier.config.ts"
 [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 [ -d "$HOME/.pyenv" ] && eval "$(pyenv init - zsh)"
 if type "dircolors" > /dev/null; then

@@ -10,7 +10,6 @@ require("mason-lspconfig").setup({
 		"clangd",
 		-- web
 		"ts_ls",
-		"biome",
 		"mdx_analyzer",
 		"cssls",
 		"html",
@@ -103,13 +102,14 @@ vim.filetype.add({ extension = { wgsl = "wgsl" } })
 vim.filetype.add({ extension = { mdx = "mdx" } })
 vim.filetype.add({ extension = { webc = "html" } })
 
+local prettier = { "prettierd", "prettier", stop_after_first = true }
 require("conform").setup({
 	formatters_by_ft = {
-		javascript = { "biome", "biome-organize-imports" },
-		css = { "biome" },
-		javascriptreact = { "biome", "biome-organize-imports" },
-		typescript = { "biome", "biome-organize-imports" },
-		typescriptreact = { "biome", "biome-organize-imports" },
+		javascript = prettier,
+		css = prettier,
+		javascriptreact = prettier,
+		typescript = prettier,
+		typescriptreact = prettier,
 		c = { "clang-format" },
 	},
 })
@@ -144,4 +144,18 @@ require("blink.cmp").setup({
 			},
 		},
 	}
+})
+local otter = require("otter");
+otter.setup({})
+
+-- if want conform + otter see
+-- https://github.com/jmbuhr/nvim-config/blob/382b050e13eada7180ad048842386be37e820660/lua/plugins/editing.lua#L29-L81
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	desc = "Run otter for typescript completion in HTML <script>",
+	group = vim.api.nvim_create_augroup('otter_on_enter', { clear = true }),
+	callback = function (opts)
+		if vim.bo[opts.buf].filetype == 'html' then
+			otter.activate()
+		end
+	end,
 })
