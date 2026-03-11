@@ -1,23 +1,9 @@
--- Open and go one line down
-local function open_closed_fold()
-	for _, win in pairs(vim.fn.getwininfo()) do
-		if win["quickfix"] == 1 then
-			vim.cmd('norm! \r')
-			vim.cmd("cclose")
-			vim.cmd("lclose")
-			return
-		end
-	end
-	vim.cmd('silent! exe "norm! zo"')
-	vim.cmd('norm! \r')
-end
-
 local telescope = require('telescope.builtin')
 local conform = require('conform')
 
 local keymaps = {
 	n = {
-		['<Space>'] = '<Nop>', -- Why does this move one char right anyways?
+		['<Space>'] = '<Nop>', -- Space is leader
 		[';'] = ':',         -- I never use ; to goto next instance in line, but I save and quit files a lot.
 		['<C-f>'] = ':%s/',  -- Like other editors
 		['<C-h>'] = '<C-w>h',
@@ -50,7 +36,8 @@ local keymaps = {
 		-- folding
 		['<A-j>'] = 'zj',                 -- Goto next fold
 		['<A-k>'] = 'zk',                 -- Goto previous fold
-		['<CR>'] = open_closed_fold,
+		['<CR>'] = 'zv<CR>',
+		['<S-CR>'] = 'zc',
 		['z{'] = 'zm',                    -- Increase folding
 		['z}'] = 'zr',                    -- Reduce folding
 		['g{'] = 'zM',                    -- Fold all
@@ -59,6 +46,7 @@ local keymaps = {
 	i = {
 		['<C-Space>'] = '<C-X><C-O>', -- Omnifunc
 		['<C-K>'] = vim.lsp.buf.signature_help,
+		['<ESC>'] = '<ESC>zv' -- fix folding after adding fold levels
 	},
 }
 
