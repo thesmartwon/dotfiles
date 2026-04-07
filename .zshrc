@@ -158,3 +158,7 @@ fi
 
 # bun completions
 [ -s "/Users/zack/.bun/_bun" ] && source "/Users/zack/.bun/_bun"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"

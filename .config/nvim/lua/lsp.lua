@@ -57,9 +57,9 @@ vim.lsp.config.lua_ls = {
 			diagnostics = {
 				globals = { 'vim' }
 			},
-			-- workspace = {
-			-- 	library = vim.api.nvim_get_runtime_file("", true),
-			-- },
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
 			telemetry = {
 				enable = false
 			},
@@ -98,6 +98,15 @@ vim.lsp.config.cssls = {
 		}
 	}
 }
+vim.lsp.config.rust_analyzer = {
+  settings = {
+    ['rust-analyzer'] = {
+      cargo = {
+        features = { 'wasm' },
+      },
+    },
+  },
+}
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
 vim.filetype.add({ extension = { mdx = "mdx" } })
 vim.filetype.add({ extension = { webc = "html" } })
@@ -111,6 +120,7 @@ require("conform").setup({
 		typescript = prettier,
 		typescriptreact = prettier,
 		c = { "clang-format" },
+		rust = { "rustfmt" },
 	},
 })
 

@@ -21,44 +21,37 @@ case "$ARCH" in
   *)             echo "unknown ARCH: $ARCH" && exit 1 ;;
 esac
 
-ZLS_INDEX=$(curl https://zigtools-releases.nyc3.digitaloceanspaces.com/zls/index.json)
 VERSION=$1
-if [[ $VERSION == "" ]]; then
-	# Use latest supported ZLS version
-	ZLS_VERSION=$(echo $ZLS_INDEX | jq -r '.latest')
-	VERSION=$(echo $ZLS_INDEX | jq -r ".versions | .\"$ZLS_VERSION\" | .builtWithZigVersion")
-else
-	ZLS_VERSION=$(echo $ZLS_INDEX | jq -r "last(.versions | .[] | select(.builtWithZigVersion==\"$VERSION\")) | .zlsVersion")
-fi
-
-TRIPLET="zig-$OS-$ARCH-$VERSION"
-ARCHIVE="$TRIPLET.tar.xz"
+ZLS_VERSION=$2
 
 mkdir -p $INSTALL_DIR
 pushd $INSTALL_DIR
 
-if [ ! -d $VERSION ]; then
-	echo "Downloading Zig $VERSION"
-	curl "https://ziglang.org/download/$VERSION/$ARCHIVE" --output $ARCHIVE
-	tar -xf $ARCHIVE
-	rm $ARCHIVE
+TRIPLET="zig-$ARCH-$OS-$VERSION"
+ARCHIVE="$TRIPLET.tar.xz"
+echo "Downloading Zig $VERSION"
+curl "https://ziglang.org/download/$VERSION/$ARCHIVE" --output $ARCHIVE
+tar -xf $ARCHIVE
+rm $ARCHIVE
 
-	mv $TRIPLET $VERSION
-fi
+rm -rf $VERSION
+mv $TRIPLET $VERSION
 
 mkdir -p $BIN_DIR
 ln -sf $(readlink -f $VERSION/zig) $BIN_DIR/zig
 
-if [[ $ZLS_VERSION != "" ]]; then
-	mkdir -p $INSTALL_DIR/zls
-	ZLS_INSTALL_PATH=$INSTALL_DIR/zls/$ZLS_VERSION
-	if [ ! -f $ZLS_INSTALL_PATH ]; then
-		echo "Downloading ZLS $ZLS_VERSION"
-		curl https://zigtools-releases.nyc3.digitaloceanspaces.com/zls/$ZLS_VERSION/$ARCH-$OS/zls > $ZLS_INSTALL_PATH
-		chmod +x $ZLS_INSTALL_PATH
-	fi
-
-	ln -sf $(readlink -f $ZLS_INSTALL_PATH) $BIN_DIR/zls
-else
-	echo "No ZLS built with Zig $VERSION, skipping"
-fi
+# Relying on latest for now.
+# INDEX_URL="https://releases.zigtools.org/v1/zls/select-version?zig_version=$VERSION&compatibility=only-runtime"
+# ZLS_URL=$(curl $INDEX_URL | jq ".\"$ARCH-$OS\".tarball" -r)
+# ZLS_VERSION=$(echo $ZLS_URL | sed 's:^.*-\(.*\)\.tar\.xz$:\1:')
+#
+# pushd zls
+# mkdir -p $INSTALL_DIR/zls
+# ZLS_INSTALL_PATH=$INSTALL_DIR/zls/$ZLS_VERSION
+# ARCHIVE="zls-$ARCH-$OS-$ZLS_VERSION"
+# echo "Downloading ZLS $ZLS_VERSION"
+# curl $ZLS_URL --output $ARCHIVE
+# tar -xf $ARCHIVE -C $ZLS_VERSION
+# rm $ARCHIVE
+#
+# ln -sf $(readlink -f $ZLS_VERSION/zls) $BIN_DIR/zls
