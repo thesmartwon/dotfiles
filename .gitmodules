@@ -17,9 +17,10 @@
 [submodule ".local/share/nvim/site/pack/plugins/start/nvim-treesitter"]
 	path = .local/share/nvim/site/pack/plugins/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
+	branch = main
 [submodule ".local/share/nvim/site/pack/plugins/start/nvim-colorizer.lua"]
 	path = .local/share/nvim/site/pack/plugins/start/nvim-colorizer.lua
-	url = https://github.com/norcalli/nvim-colorizer.lua
+	url = https://github.com/catgoose/nvim-colorizer.lua
 [submodule ".local/share/nvim/site/pack/plugins/start/tokyonight.nvim"]
 	path = .local/share/nvim/site/pack/plugins/start/tokyonight.nvim
 	url = https://github.com/folke/tokyonight.nvim
