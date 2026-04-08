@@ -10,9 +10,9 @@ require("mason-lspconfig").setup({
 		"clangd",
 		-- web
 		"ts_ls",
-		"mdx_analyzer",
 		"cssls",
 		"html",
+		"svelte",
 		-- config
 		"yamlls",
 		-- rest
@@ -29,21 +29,68 @@ require("mason-lspconfig").setup({
 })
 
 -- Treesitter is a nice in-between regex highlighting and LSP.
-require("nvim-treesitter.configs").setup({
-	modules = {},
-	auto_install = true,
-	ensure_installed = {},
-	ignore_install = {},
-	sync_install = false,
-	highlight = {
-		enable = true,
-	},
-	indent = { enable = true }
+-- We need this package to install grammars to runtimepath
+local ts = require("nvim-treesitter")
+ts.setup()
+local langs = {
+	'astro',
+	'bash',
+	'c',
+	'cmake',
+	'cpp',
+	'css',
+	'csv',
+	'git_config',
+	'git_rebase',
+	'gitcommit',
+	'gitignore',
+	'html',
+	'ini',
+	'javascript',
+	'json',
+	'julia',
+	'liquid',
+	'lua',
+	'make',
+	'markdown',
+	'markdown_inline',
+	'prisma',
+	'pug',
+	'python',
+	'rust',
+	'scss',
+	'sql',
+	'ssh_config',
+	'strace',
+	'svelte',
+	'tcl',
+	'terraform',
+	'toml',
+	'tsv',
+	'tsx',
+	'typescript',
+	'vim',
+	'vimdoc',
+	'vue',
+	'xml',
+	'yaml',
+	'zig',
+}
+vim.defer_fn(function() ts.install(langs) end, 1000)
+ts.update()
+vim.api.nvim_create_autocmd('FileType', {
+	callback = function(ctx)
+		local hasStarted = pcall(vim.treesitter.start)
+		local noIndent = {}
+		if hasStarted and not vim.list_contains(noIndent, ctx.match) then
+			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			vim.wo.foldmethod = 'expr'
+			vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+		end
+	end,
 })
 
 -- folding
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevelstart = 1
 vim.opt.foldminlines = 3
 vim.opt.foldnestmax = 8
@@ -67,9 +114,6 @@ vim.lsp.config.lua_ls = {
 	}
 }
 vim.lsp.config.zls = { settings = { enable_autofix = false } }
-vim.lsp.config.biome = {
-	filetypes = { "html", "css", "typescript", "javascript", "tsx", "jsx" }
-}
 
 -- local vue_ls_path = vim.fn.expand("$MASON/packages/vue-language-server")
 -- local vue_plugin_path = vue_ls_path .. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
@@ -142,9 +186,7 @@ require("blink.cmp").setup({
 	},
 	fuzzy = {
 		implementation = "prefer_rust",
-		prebuilt_binaries = {
-			force_version = "1.6.0",
-		},
+		prebuilt_binaries = { force_version = "v*" },
 	},
 	sources = {
 		providers = {

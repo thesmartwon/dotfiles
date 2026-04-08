@@ -16,7 +16,7 @@ local keymaps = {
 		['<leader>f'] = telescope.find_files,
 		['<leader>g'] = telescope.live_grep,
 		['<leader>t'] = telescope.buffers,
-		['<leader>x'] = '<cmd>bd<CR>',  -- Close buffer
+		['<leader>x'] = '<cmd>bd!<CR>',  -- Close buffer
 		['<leader>v'] = '<cmd>vsplit<CR>',
 		['<leader>q'] = '<cmd>copen<CR>', -- Open quickfix
 		['<leader>rr'] = vim.lsp.buf.references,
@@ -47,6 +47,9 @@ local keymaps = {
 		['<C-Space>'] = '<C-X><C-O>', -- Omnifunc
 		['<C-K>'] = vim.lsp.buf.signature_help,
 		['<ESC>'] = '<ESC>zv' -- fix folding after adding fold levels
+	},
+	t = {
+		['<ESC>'] = '<C-\\><C-n>' -- Exit terminal mode
 	},
 }
 
