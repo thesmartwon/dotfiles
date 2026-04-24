@@ -155,7 +155,7 @@ vim.filetype.add({ extension = { wgsl = "wgsl" } })
 vim.filetype.add({ extension = { mdx = "mdx" } })
 vim.filetype.add({ extension = { webc = "html" } })
 
-local prettier = { "prettierd", "prettier", stop_after_first = true }
+local prettier = { "prettier", stop_after_first = true }
 require("conform").setup({
 	formatters_by_ft = {
 		javascript = prettier,
@@ -163,6 +163,7 @@ require("conform").setup({
 		javascriptreact = prettier,
 		typescript = prettier,
 		typescriptreact = prettier,
+		svelte = prettier,
 		c = { "clang-format" },
 		rust = { "rustfmt" },
 	},

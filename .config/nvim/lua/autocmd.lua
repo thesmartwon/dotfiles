@@ -22,6 +22,10 @@ local commands = {
 	-- 	vim.cmd([[%s/\s\+$//e]])
 	-- 	vim.fn.setpos(".", save_cursor)
 	-- end},
+	-- Disable default ftplugins that do weird things
+	{{ "BufReadPre", "BufNewFile"}, function()
+		vim.b.did_ftplugin = 1
+	end},
 }
 
 for _, command in pairs(commands) do
