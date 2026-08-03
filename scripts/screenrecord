@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if ! pkill wf-recorder; then
+	wf-recorder -c libwebp_anim -F fps=15 -g "$(slurp)" -f ~/Videos/$(date '+%Y-%m-%dT%H:%M:%S').webp
+fi
