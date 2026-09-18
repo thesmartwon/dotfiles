@@ -28,8 +28,8 @@ local keymaps = {
 		['<leader>i'] = vim.lsp.buf.implementation,
 		['<leader>h'] = vim.lsp.buf.hover,
 		['<leader>s'] = '<cmd>ClangdSwitchSourceHeader<CR>',
-		['[d'] = vim.diagnostic.goto_prev,
-		[']d'] = vim.diagnostic.goto_next,
+		['[d'] = function() vim.diagnostic.jump({ float = true, count = -1 }) end,
+		[']d'] = function() vim.diagnostic.jump({ float = true, count = 1 }) end,
 		[']n'] = '<cmd>cprev<CR>',
 		['[n'] = '<cmd>cnext<CR>',
 		['<ESC>'] = '<cmd>noh | echon<CR>', -- No highlight

@@ -13,6 +13,8 @@ require('mason-lspconfig').setup({
 		'cssls',
 		'html',
 		'svelte',
+		-- python
+		'ty',
 		-- config
 		'yamlls',
 		-- rest
@@ -169,7 +171,8 @@ require('conform').setup({
 		html = prettier,
 		c = { 'clang-format' },
 		rust = { 'rustfmt' },
-		typst = { 'typstyle' }
+		typst = { 'typstyle' },
+		zig = { 'zigfmt' },
 	},
 })
 

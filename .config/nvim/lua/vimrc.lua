@@ -13,16 +13,13 @@ o.backspace = 'indent,eol,start'
 -- show diagnostics and autosave quickly
 o.updatetime = 500
 
--- display tab as 2 spaces
+-- prefer tabs, use 2 columns
+-- see autocmd.lua for more tab opts
 o.autoindent = true
 o.smarttab = true
 o.tabstop = 2
 o.softtabstop = 2
 o.shiftwidth = 2
--- see autocmd.lua for more tab opts
--- towards displaying 4 space tabs as 2 spaces (see autocmd.lua for the rest)
-o.concealcursor = 'nvi'
-o.conceallevel = 1
 -- display tabs different than spaces to maintain sanity
 o.list = true
 o.listchars = { tab = '|-' }

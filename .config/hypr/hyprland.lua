@@ -113,11 +113,11 @@ hl.workspace_rule({ workspace = "8", monitor = right })
 hl.workspace_rule({ workspace = "9", monitor = right })
 hl.workspace_rule({ workspace = "10", monitor = right })
 
-hl.window_rule({
-	name = "ignore-fullscreen",
-	match = { class = ".*" },
-	suppress_event = "fullscreen maximize",
-})
+-- hl.window_rule({
+-- 	name = "ignore-fullscreen",
+-- 	match = { class = ".*" },
+-- 	suppress_event = "fullscreen maximize",
+-- })
 
 -- hl.window_rule({
 -- 	name = "ignore-float",
