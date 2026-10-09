@@ -43,7 +43,6 @@ vim.api.nvim_create_autocmd('FileType', {
 		end
 	end,
 })
-require("ripple").setup()
 local ts = require('nvim-treesitter')
 ts.setup()
 ts.update()
@@ -72,7 +71,6 @@ vim.defer_fn(function() ts.install({
 	'prisma',
 	'pug',
 	'python',
-	'ripple',
 	'rust',
 	'scss',
 	'sql',
