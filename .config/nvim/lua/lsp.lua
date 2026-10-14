@@ -19,7 +19,7 @@ require('mason-lspconfig').setup({
 		'yamlls',
 		-- rest
 		'rust_analyzer',
-		'tinymist',
+		-- 'tinymist',
 		'zls',
 	},
 	ui = {
@@ -175,10 +175,10 @@ require('conform').setup({
 })
 
 -- typst
-require('typst-preview').setup({
-	invert_colors = 'auto',
-	dependencies_bin = { tinymist = 'tinymist' } -- use Mason install
-})
+-- require('typst-preview').setup({
+-- 	invert_colors = 'auto',
+-- 	dependencies_bin = { tinymist = 'tinymist' } -- use Mason install
+-- })
 
 -- completion
 require('blink.cmp').setup({
@@ -198,7 +198,6 @@ require('blink.cmp').setup({
 	},
 	fuzzy = {
 		implementation = 'prefer_rust',
-		prebuilt_binaries = { force_version = 'v*' },
 	},
 	sources = {
 		providers = {

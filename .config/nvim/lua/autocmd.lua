@@ -38,7 +38,7 @@ local commands = {
 }
 
 -- resourcing clears these
-local group = vim.api.nvim_create_augroup('thesm', { clear = true })
+local group = vim.api.nvim_create_augroup('foo', { clear = true })
 for _, command in pairs(commands) do
 	vim.api.nvim_create_autocmd(command[1], { callback = command[2], pattern = command[3], group = group })
 end
