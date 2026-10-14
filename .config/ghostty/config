@@ -1,4 +1,4 @@
-font-family = "Source Code Pro"
+font-family = "Iosevka Term"
 font-family = "Noto Sans Hebrew"
 font-size = 14
 background-opacity = 0.9
@@ -12,7 +12,9 @@ confirm-close-surface = false
 
 adw-toolbar-style = flat
 window-vsync = false
-working-directory = inherit
+working-directory = home
+window-inherit-working-directory = true
+tab-inherit-working-directory = true
 
 keybind = super+enter=new_window
 keybind = super+n=new_window
